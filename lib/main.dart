@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proloapp/Contestant/view/contestant.dart';
 import 'package:proloapp/Home/view/home.dart';
 
 import 'Leaderboard/view/leaderboard.dart';
@@ -39,7 +40,7 @@ class MyHomePage extends StatelessWidget {
                   child : TabBar(
                     labelColor: Colors.black,
                     tabs: [
-                      Tab(icon: Icon(Icons.schedule)),
+                      Tab(icon: Icon(Icons.leaderboard)),
                       Tab(icon: Icon(Icons.home)),
                       Tab(icon: Icon(Icons.person)),
                     ],
@@ -49,6 +50,7 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       LeaderboardWidget(),
                       HomeWidget(qrValue: qrValue),
+                      ContestantWidget()
                     ])
             )
         )
