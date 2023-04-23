@@ -1,8 +1,8 @@
-import '../../Leaderboard/model/house.dart';
+import '../../Leaderboard/model/name.dart';
 
 class Contestant {
   String login;
-  House house;
+  Name house;
   double points;
 
   Contestant(this.login, this.house, this.points);
