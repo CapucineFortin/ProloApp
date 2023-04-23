@@ -4,7 +4,7 @@ import 'name.dart';
 
 class House {
   Name name;
-  double points;
+  int points;
   Color color;
   List<String> members;
 
