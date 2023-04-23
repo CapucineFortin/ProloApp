@@ -20,7 +20,7 @@ class HomeWidget extends StatelessWidget {
       const SizedBox(
         height: 70,
       ),
-      TextField(),
+      const TextField(),
       const SizedBox(
         height: 30,
       ),
