@@ -4,6 +4,7 @@ class Contestant {
   String login;
   Name house;
   double points;
+  String type;
 
-  Contestant(this.login, this.house, this.points);
+  Contestant(this.login, this.house, this.points, this.type);
 }

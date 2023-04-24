@@ -1,12 +1,12 @@
 import '../../Leaderboard/model/name.dart';
-import '../model/contestant.dart';
+import '../model/user.dart';
 
 List<Contestant> getAllContestant() {
   return [
-    Contestant("adri", Name.gryffindor, 50),
-    Contestant("capu", Name.slytherin, 60),
-    Contestant("mel", Name.hufflepuff, 30),
-    Contestant("mira", Name.ravenclaw, 40),
+    Contestant("adri", Name.gryffindor, 50, "orga"),
+    Contestant("capu", Name.slytherin, 60, "orga"),
+    Contestant("mel", Name.hufflepuff, 30, "orga"),
+    Contestant("mira", Name.ravenclaw, 40, "orga"),
   ];
 }
 
