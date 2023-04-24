@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proloapp/User/view/user.dart';
+import 'package:proloapp/User/view/users.dart';
 import 'package:proloapp/Home/view/home.dart';
 
 import 'Leaderboard/view/leaderboard.dart';
