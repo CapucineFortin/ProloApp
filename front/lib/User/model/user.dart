@@ -7,4 +7,8 @@ class User {
   String type;
 
   User(this.login, this.house, this.points, this.type);
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(json['login'], json['name'], json['points'], json['type']);
+  }
 }

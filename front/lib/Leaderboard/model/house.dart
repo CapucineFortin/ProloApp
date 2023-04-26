@@ -9,4 +9,8 @@ class House {
   List<String> members;
 
   House(this.name, this.points, this.color, this.members);
+
+  factory House.fromJson(Map<String, dynamic> json) {
+    return House(json['name'], json['points'], json['color'], json['members']);
+  }
 }

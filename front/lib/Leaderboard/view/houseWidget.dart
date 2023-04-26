@@ -17,8 +17,7 @@ Color getColor(int index) {
   }
 }
 
-Widget getTeamWidget(int index){
-  House house = sortedHouse()[index];
+Widget getTeamWidget(int index, House house){
   Color color = getColor(index);
 
   return Container(
