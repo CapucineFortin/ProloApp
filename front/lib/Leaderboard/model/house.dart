@@ -12,8 +12,8 @@ class House {
   House(this.name, this.points, this.color, this.members);
 
   factory House.fromJson(Map<String, dynamic> json) {
-    Name name = json['name'];
-    return House(name, 0, getColorFromHouse(name),[]);
+    Name name = getNamefromString(json['name']);
+    return House(name, json['score'], getColorFromHouse(name),[]);
   }
 }
 
