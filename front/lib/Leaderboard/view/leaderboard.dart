@@ -14,7 +14,7 @@ class LeaderboardWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.hasError) {
-          return const Center(child: Text('Failed to fetch houses'));
+          return Center(child: Text('Erreur: ${snapshot.error}'));
         }
         final houses = snapshot.data!;
         return Center(

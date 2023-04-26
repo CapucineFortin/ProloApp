@@ -24,7 +24,7 @@ Widget getTeamWidget(int index, House house){
       height: 100,
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: house.color,
+        color: getColor(index),
         borderRadius: BorderRadius.circular(30)
       ),
       child: Row(

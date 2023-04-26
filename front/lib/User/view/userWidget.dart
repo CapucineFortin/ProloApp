@@ -22,7 +22,6 @@ Color getColor(Name name) {
 }
 
 Widget getUserWidget(User user, int index){
-  Color color = getColor(user.house);
   return Container(
       height: 100,
       padding: const EdgeInsets.all(30),
@@ -42,7 +41,7 @@ Widget getUserWidget(User user, int index){
                 user.login,
                 style: TextStyle(
                   fontSize: 20,
-                  color: color,
+                  color: getColorFromHouse(user.house),
                   fontWeight: FontWeight.bold,
                 )
             ),

@@ -10,10 +10,9 @@ import '../model/name.dart';
 Future<List<House>> getAllHouse() async {
   final response = await http.get(Uri.parse('http://127.0.0.1:8000/users_manager/houses'));
   if (response.statusCode == 200) {
-    final List<dynamic> data = jsonDecode(response.body);
-    return data.map((json) => House.fromJson(json)).toList();
+    return houseListFromJson(response.body);
   } else {
-    throw Exception('Failed to load users');
+    throw Exception(response.body);
   }
 }
 
