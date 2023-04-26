@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+
 
 import '../model/house.dart';
 import '../model/name.dart';
 
-List<House> getAllHouses() {
-  House gryffindor = House(Name.gryffindor, 50, const Color(0xffa6332e),["adri"]);
-  House slytherin = House(Name.slytherin, 60, const Color(0xff366447),["capu"]);
-  House hufflepuff = House(Name.hufflepuff, 30, const Color(0xffefbc2f),["mel"]);
-  House ravenclaw = House(Name.ravenclaw, 40, const Color(0xff3c4e91),["mira"]);
-  return [gryffindor, slytherin, hufflepuff, ravenclaw];
+Future<List<House>> getAllHouse() async {
+  final response = await http.get(Uri.parse('http://127.0.0.1:8000/users_manager/houses'));
+  if (response.statusCode == 200) {
+    return houseListFromJson(response.body);
+  } else {
+    throw Exception(response.body);
+  }
 }
 
-List<House> sortedHouse(){
-  List<House> houses = getAllHouses();
+Future<List<House>> sortedContestant() async {
+  List<House> houses = await getAllHouse();
   houses.sort((a, b) => b.points.compareTo(a.points));
   return houses;
 }

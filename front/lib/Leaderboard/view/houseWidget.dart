@@ -17,15 +17,14 @@ Color getColor(int index) {
   }
 }
 
-Widget getTeamWidget(int index){
-  House house = sortedHouse()[index];
+Widget getTeamWidget(int index, House house){
   Color color = getColor(index);
 
   return Container(
       height: 100,
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: house.color,
+        color: getColor(index),
         borderRadius: BorderRadius.circular(30)
       ),
       child: Row(

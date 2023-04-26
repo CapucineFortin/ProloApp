@@ -7,12 +7,21 @@ import '../../Leaderboard/model/house.dart';
 import '../model/user.dart';
 
 Color getColor(Name name) {
-  List<House> houses = getAllHouses();
-   return houses.where((house) => house.name == name).first.color;
+  switch (name) {
+    case Name.gryffindor:
+      return const Color(0xffa6332e);
+    case Name.slytherin:
+      return const Color(0xff366447);
+    case Name.hufflepuff:
+      return const Color(0xffefbc2f);
+    case Name.ravenclaw:
+      return const Color(0xff3c4e91);
+    default:
+      return const Color(0xff000000);
+  }
 }
 
 Widget getUserWidget(User user, int index){
-  Color color = getColor(user.house);
   return Container(
       height: 100,
       padding: const EdgeInsets.all(30),
@@ -32,7 +41,7 @@ Widget getUserWidget(User user, int index){
                 user.login,
                 style: TextStyle(
                   fontSize: 20,
-                  color: color,
+                  color: getColorFromHouse(user.house),
                   fontWeight: FontWeight.bold,
                 )
             ),
