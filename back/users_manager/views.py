@@ -18,10 +18,11 @@ def get_users(request):
 def get_contestants(request):
     contestants = Contestant.objects.all()
     response = [{
-                'name': f'{contestant.user.first_name} {contestant.user.last_name}',
-                'house': contestant.house.name,
-                'score': contestant.score,
-                } for contestant in contestants]
+        'username': contestant.user.username,
+        'name': f'{contestant.user.first_name} {contestant.user.last_name}',
+        'house': contestant.house.name,
+        'score': contestant.score,
+        } for contestant in contestants]
     return JsonResponse(response, safe=False)
 
 def get_contestant(request, username):
