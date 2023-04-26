@@ -7,8 +7,11 @@ import json
 # Create your views here.
 def get_houses(request):
     houses = House.objects.all()
-    houses_list = [house.name for house in houses]
-    return JsonResponse({'houses': houses_list})
+    response = [{
+        "name": house.name,
+        "score": house.total_score(),
+    } for house in houses]
+    return JsonResponse(response, safe=False)
 
 def get_users(request):
     users = User.objects.all().values('username', 'first_name', 'last_name')
