@@ -9,15 +9,20 @@ Widget getTeamWidget(int index, House house){
   return Container(
       height: 60,
       decoration: BoxDecoration(
-        color: house.color,
-        borderRadius: BorderRadius.circular(30)
+        border: Border.all(color: house.color),
+        borderRadius: BorderRadius.circular(30),
+        gradient: const RadialGradient(
+          colors: [Color(0xff003b48), Color(0xff09242e),],
+          center: Alignment.center,
+          radius: 1.5,
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             houseRankWidget(index, house),
             Container(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               width: 200,
               child: houseScoreWidget(house))
           ]

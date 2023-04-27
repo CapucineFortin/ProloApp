@@ -18,7 +18,7 @@ Widget housesWidget() {
       return Center(
         child: SizedBox(
           height: 400,
-          width: 300,
+          width: 350,
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 4,
