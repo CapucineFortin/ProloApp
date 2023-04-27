@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proloapp/User/controller/userController.dart';
 import '../../User/model/user.dart';
 import '../controller/homeController.dart';
 import '../controller/qrScan.dart';
 
 class HomeWidget extends StatelessWidget {
   String qrValue;
-  String test ='taha.amrani';
+  String test ='anton.avilov';
   final TextEditingController _textEditingController = TextEditingController();
   HomeWidget({Key? key, required this.qrValue}) : super (key: key);
 
@@ -38,14 +39,20 @@ class HomeWidget extends StatelessWidget {
       ),
       ElevatedButton(
         onPressed: () async {
-          // Get the contestant by login
+
           final User? user = await getContestant(test);
+          List<User> users = await getAllUser();
 
-          // Calculate new points
+          for (var user in users) {
+            user.previousIndex = getIndex(users, user.login);
+          }
+
           final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0;
-
-          // Update the contestant with new points
           await updateContestant(user!, pointsToAdd);
+
+          for (var user in users) {
+            user.newIndex = getIndex(users, user.login);
+          }
 
           // Clear the text field
           _textEditingController.clear();

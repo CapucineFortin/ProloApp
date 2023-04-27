@@ -6,15 +6,18 @@ class User {
   String login;
   Name house;
   int points;
-  int? previousIndex;
-  int? newIndex;
-  User(this.login, this.house, this.points);
+  int previousIndex;
+  int newIndex;
+
+  User(this.login, this.house, this.points, this.previousIndex, this.newIndex);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       json['username'] as String,
       getNamefromString(json['house']),
       json['score'] as int,
+      0,
+      0,
     );
   }
 }

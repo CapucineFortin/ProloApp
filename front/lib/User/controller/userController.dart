@@ -11,18 +11,13 @@ Future<List<User>> getAllUser() async {
   }
 }
 
-List<User> sorted(List<User> users) {
-  for (int i = 0; i < users.length; i++) {
-    users[i].previousIndex = i;
-  }
+List<User> sort(List<User> users) {
   users.sort((a, b) => b.points.compareTo(a.points));
-  for (int i = 0; i < users.length; i++) {
-    users[i].newIndex = i;
-  }
   return users;
 }
 
 int getIndex(List<User> users, String login){
+  users = sort(users);
   for (int i=0; i<users.length;i++){
     if (users[i].login == login){
       return i;

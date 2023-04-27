@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:proloapp/Leaderboard/controller/houseController.dart';
-import 'package:proloapp/Leaderboard/model/name.dart';
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import '../../Leaderboard/model/house.dart';
+import 'package:flutter/material.dart';
+import 'package:proloapp/Leaderboard/model/name.dart';
+
 import '../model/user.dart';
 
 Color getColor(Name name) {
@@ -21,20 +20,32 @@ Color getColor(Name name) {
   }
 }
 
+String decodeUtf8(String bytesString) {
+  List<int> bytes = bytesString.codeUnits;
+  Utf8Decoder utf8decoder = new Utf8Decoder(allowMalformed: true);
+  return utf8decoder.convert(bytes);
+}
+
+
 Widget getUserWidget(User user, int index, int previousIndex) {
-  int diff = user.previousIndex! - user.newIndex!;
-  bool isUp = diff < 0;
+  int diff = (user.previousIndex ?? 0) - (user.newIndex ?? 0);
 
   IconData icon;
   Color color;
-  if (isUp) {
+  if (diff < 0) {
     icon = Icons.arrow_drop_up;
     color = Colors.green;
-    diff = -diff; // on prend la valeur absolue de diff pour l'afficher
-  } else {
+    diff = -diff;
+  } else if(diff > 0) {
     icon = Icons.arrow_drop_down;
     color = Colors.red;
   }
+  else {
+    icon = Icons.arrow_drop_up;
+    color = Colors.transparent;
+  }
+
+
 
   return Container(
     height: 100,
@@ -86,7 +97,7 @@ Widget getUserWidget(User user, int index, int previousIndex) {
           child: Column(
               children: [
                 Text(
-                  user.login,
+                  decodeUtf8(user.login) ,
                   style: TextStyle(
                     fontSize: 20,
                     color: getColorFromHouse(user.house),

@@ -30,7 +30,7 @@ class UserWidget extends StatelessWidget {
                     child: ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return getUserWidget(sorted(users)[index], index, 0);
+                      return getUserWidget(sort(users)[index], index, 0);
                     }, separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(height: 20);
                 },
