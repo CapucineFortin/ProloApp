@@ -13,6 +13,20 @@ def get_houses(request):
     } for house in houses]
     return JsonResponse(response, safe=False)
 
+def get_house_contestants(request, house_name):
+    house = get_object_or_404(House, name=house_name)
+    contestants = Contestant.objects.filter(house=house).select_related('user')
+    response_data = {
+        'house': house_name,
+        "total_score": house.total_score(),
+        'contestants': [{
+            'username': contestant.user.username,
+            'name': f'{contestant.user.first_name} {contestant.user.last_name}',
+            'score': contestant.score
+        } for contestant in contestants]
+    }
+    return JsonResponse(response_data, safe=False)
+
 def get_users(request):
     users = User.objects.all().values('username', 'first_name', 'last_name')
     users_list = list(users)
