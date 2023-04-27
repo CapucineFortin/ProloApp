@@ -21,38 +21,79 @@ Color getColor(Name name) {
   }
 }
 
-Widget getUserWidget(User user, int index){
+Widget getUserWidget(User user, int index, int previousIndex) {
+  int diff = previousIndex - index;
+  bool isUp = diff < 0;
+
+  IconData icon;
+  Color color;
+  if (isUp) {
+    icon = Icons.arrow_drop_up;
+    color = Colors.green;
+    diff = -diff; // on prend la valeur absolue de diff pour l'afficher
+  } else {
+    icon = Icons.arrow_drop_down;
+    color = Colors.red;
+  }
+
   return Container(
-      height: 100,
-      padding: const EdgeInsets.all(30),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30)
+    height: 150,
+    padding: const EdgeInsets.all(30),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      gradient: const RadialGradient(
+        colors: [Color(0xff003b48), Color(0xff09242e),],
+        center: Alignment.center,
+        radius: 1.5,
       ),
-      child: Row(
-          children: [
-            Text(
-              (index+1).toString(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-                user.login,
+    ),
+    child: Row(
+      children: [
+        Text(
+          (index + 1).toString(),
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 50,
+          child: Column(
+            children: [
+              Icon(icon, color: color),
+              Text(
+                diff.toString(),
                 style: TextStyle(
-                  fontSize: 20,
-                  color: getColorFromHouse(user.house),
+                  fontSize: 16,
+                  color: color,
                   fontWeight: FontWeight.bold,
-                )
-            ),
-            Text(
-                user.points.toString(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )
-            ),
-          ]
-      )
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 50,
+          child: Column(
+              children: [
+                Text(
+                  user.login,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: getColorFromHouse(user.house),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  user.points.toString(),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ]),
+        )
+      ],
+    ),
   );
 }

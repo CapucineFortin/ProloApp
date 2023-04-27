@@ -17,11 +17,16 @@ class UserWidget extends StatelessWidget {
                 return Text('Erreur: ${snapshot.error}');
               } else {
                 List<User> users = snapshot.data!;
-                return ListView.builder(
+                return Container(
+                  width: 500,
+                    child: ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return getUserWidget(users[index], index);
-                    }
+                      return getUserWidget(users[index], index, 0);
+                    }, separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(height: 20);
+                },
+                )
                 );
               }
             }

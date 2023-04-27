@@ -30,7 +30,7 @@ class HomeWidget extends StatelessWidget {
       ElevatedButton(
         onPressed: () async {
           // Get the contestant by login
-          final User? user = await getContestant(qrValue);
+          final User? user = await getContestant('loan.bernable');
 
           // Calculate new points
           final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0;
