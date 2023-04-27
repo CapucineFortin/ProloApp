@@ -16,7 +16,7 @@ Future<List<House>> getAllHouse() async {
   }
 }
 
-Future<List<House>> sortedContestant() async {
+Future<List<House>> sortedHouses() async {
   List<House> houses = await getAllHouse();
   houses.sort((a, b) => b.points.compareTo(a.points));
   return houses;

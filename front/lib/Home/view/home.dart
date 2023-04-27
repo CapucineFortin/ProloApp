@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../User/model/user.dart';
+import '../controller/homeController.dart';
 import '../controller/qrScan.dart';
 
 class HomeWidget extends StatelessWidget {
   String qrValue;
+  final TextEditingController _textEditingController = TextEditingController();
   HomeWidget({Key? key, required this.qrValue}) : super (key: key);
 
 
   @override
   Widget build(BuildContext context){
     return Column(children: [
-      const SizedBox(width: 500, height: 500),
+      const SizedBox(width: 500, height: 300),
       ElevatedButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
@@ -20,16 +23,26 @@ class HomeWidget extends StatelessWidget {
       const SizedBox(
         height: 70,
       ),
-      const TextField(),
+      TextField(controller: _textEditingController),
       const SizedBox(
         height: 30,
       ),
       ElevatedButton(
-        onPressed: () => {},
-        child:
-          const Text("Valider")
+        onPressed: () async {
+          // Get the contestant by login
+          final User? user = await getContestant(qrValue);
+
+          // Calculate new points
+          final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0;
+
+          // Update the contestant with new points
+          await updateContestant(user!, pointsToAdd);
+
+          // Clear the text field
+          _textEditingController.clear();
+        },
+        child: const Text("Valider"),
       ),
-    ]
-    );
+    ]);
   }
 }

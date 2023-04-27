@@ -8,7 +8,7 @@ class LeaderboardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<House>>(
-      future: getAllHouse(),
+      future: sortedHouses(),
       builder: (BuildContext context, AsyncSnapshot<List<House>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
