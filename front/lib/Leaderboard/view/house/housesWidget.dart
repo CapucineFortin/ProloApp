@@ -17,8 +17,8 @@ Widget housesWidget() {
       final houses = snapshot.data!;
       return Center(
         child: SizedBox(
-          height: 300,
-          width: 500,
+          height: 400,
+          width: 300,
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 4,
@@ -26,7 +26,7 @@ Widget housesWidget() {
               return getTeamWidget(index, houses[index]);
             },
             separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(height: 20);
+              return const SizedBox(height: 10);
             },
           ),
         ),

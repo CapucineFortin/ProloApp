@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:proloapp/Leaderboard/model/name.dart';
 import 'package:proloapp/Leaderboard/view/house/rankWidget.dart';
+import 'package:proloapp/Leaderboard/view/house/scoreWidget.dart';
 import '../../model/house.dart';
 
 
 Widget getTeamWidget(int index, House house){
   return Container(
-      height: 50,
-      padding: const EdgeInsets.all(30),
+      height: 60,
       decoration: BoxDecoration(
         color: house.color,
         borderRadius: BorderRadius.circular(30)
@@ -16,21 +16,10 @@ Widget getTeamWidget(int index, House house){
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             houseRankWidget(index, house),
-            Text(
-                house.name.stringify(),
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )
-            ),
-            Text(
-                house.points.toString(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )
-            ),
+            Container(
+              padding: EdgeInsets.only(right: 20),
+              width: 200,
+              child: houseScoreWidget(house))
           ]
       )
   );

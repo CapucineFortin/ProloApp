@@ -16,17 +16,13 @@ Widget usersWidget() {
               return Text('Erreur: ${snapshot.error}');
             } else {
               List<User> users = snapshot.data!;
-              return SizedBox(
-                  width: 600,
-                  height:500,
-                  child: ListView.separated(
+              return ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
                       return getUserWidget(sort(users)[index], index, 0);
                     }, separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(height: 5);
                   },
-                  )
               );
             }
           }

@@ -19,7 +19,9 @@ Color getColor(int index) {
 Widget houseRankWidget(int index, House house){
   return SizedBox(
     width: 100,
-    child: Row(children: [
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
       Text(
         (index+1).toString(),
         style: TextStyle(
