@@ -6,7 +6,8 @@ class User {
   String login;
   Name house;
   int points;
-
+  int? previousIndex;
+  int? newIndex;
   User(this.login, this.house, this.points);
 
   factory User.fromJson(Map<String, dynamic> json) {

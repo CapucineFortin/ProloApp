@@ -11,8 +11,22 @@ Future<List<User>> getAllUser() async {
   }
 }
 
-Future<List<User>> sortedContestant() async {
-  List<User> users = await getAllUser();
+List<User> sorted(List<User> users) {
+  for (int i = 0; i < users.length; i++) {
+    users[i].previousIndex = i;
+  }
   users.sort((a, b) => b.points.compareTo(a.points));
+  for (int i = 0; i < users.length; i++) {
+    users[i].newIndex = i;
+  }
   return users;
+}
+
+int getIndex(List<User> users, String login){
+  for (int i=0; i<users.length;i++){
+    if (users[i].login == login){
+      return i;
+    }
+  }
+  return -1;
 }

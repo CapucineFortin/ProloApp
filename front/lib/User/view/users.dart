@@ -9,7 +9,7 @@ class UserWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center (
         child: FutureBuilder<List<User>>(
-            future: sortedContestant(),
+            future: getAllUser(),
             builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
@@ -22,7 +22,7 @@ class UserWidget extends StatelessWidget {
                     child: ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return getUserWidget(users[index], index, 0);
+                      return getUserWidget(sorted(users)[index], index, 0);
                     }, separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(height: 20);
                 },

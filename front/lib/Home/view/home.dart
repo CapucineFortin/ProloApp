@@ -5,6 +5,7 @@ import '../controller/qrScan.dart';
 
 class HomeWidget extends StatelessWidget {
   String qrValue;
+  String test ='taha.amrani';
   final TextEditingController _textEditingController = TextEditingController();
   HomeWidget({Key? key, required this.qrValue}) : super (key: key);
 
@@ -30,7 +31,7 @@ class HomeWidget extends StatelessWidget {
       ElevatedButton(
         onPressed: () async {
           // Get the contestant by login
-          final User? user = await getContestant('loan.bernable');
+          final User? user = await getContestant(test);
 
           // Calculate new points
           final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0;
