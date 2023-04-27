@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proloapp/User/controller/userController.dart';
-import '../../User/model/user.dart';
+import 'package:proloapp/Leaderboard/controller/userController.dart';
+import '../../Leaderboard/model/user.dart';
 import '../controller/homeController.dart';
 import '../controller/qrScan.dart';
 

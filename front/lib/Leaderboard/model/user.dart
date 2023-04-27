@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../Leaderboard/model/name.dart';
+import 'name.dart';
 
 class User {
   String login;

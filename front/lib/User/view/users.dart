@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proloapp/User/view/userWidget.dart';
-import '../controller/userController.dart';
-import '../model/user.dart';
+import '../../Leaderboard/controller/userController.dart';
+import '../../Leaderboard/model/user.dart';
+import '../../Leaderboard/view/user/userWidget.dart';
 
 class UserWidget extends StatelessWidget {
   @override
@@ -26,13 +26,13 @@ class UserWidget extends StatelessWidget {
               } else {
                 List<User> users = snapshot.data!;
                 return SizedBox(
-                  width: 500,
+                  width: 300,
                     child: ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
                       return getUserWidget(sort(users)[index], index, 0);
                     }, separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 20);
+                  return const SizedBox(height: 10);
                 },
                 )
                 );

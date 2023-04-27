@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:proloapp/Leaderboard/model/name.dart';
-import '../controller/houseController.dart';
-import '../model/house.dart';
-import 'package:flutter/material.dart';
+import 'package:proloapp/Leaderboard/view/house/rankWidget.dart';
+import '../../model/house.dart';
 
-Color getColor(int index) {
-  switch (index) {
-    case 0:
-      return const Color(0xFFFFD700);
-    case 1:
-      return const Color(0xFFC0C0C0);
-    case 2:
-      return const Color(0xFFCD7F32);
-    default:
-      return Colors.black;
-  }
-}
 
 Widget getTeamWidget(int index, House house){
-  Color color = getColor(index);
-
   return Container(
-      height: 100,
+      height: 50,
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
         color: house.color,
@@ -30,23 +15,7 @@ Widget getTeamWidget(int index, House house){
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: 50,
-              child: Row(children: [
-                Text(
-                  (index+1).toString(),
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: color,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Icon(
-                    Icons.emoji_events,
-                    color: color
-                ),
-              ],),
-            ),
+            houseRankWidget(index, house),
             Text(
                 house.name.stringify(),
                 textAlign: TextAlign.left,
