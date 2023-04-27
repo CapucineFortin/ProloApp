@@ -28,6 +28,7 @@ class LeaderboardWidget extends StatelessWidget {
         return Center(
           child: SizedBox(
             height: 500,
+            width: 500,
             child: ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 4,

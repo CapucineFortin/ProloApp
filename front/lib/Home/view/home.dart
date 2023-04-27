@@ -14,12 +14,12 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context){
     return Container (
         decoration: const BoxDecoration(
-        gradient: RadialGradient(
-        colors: [Color(0xff003b48), Color(0xff09242e),],
-    center: Alignment.center,
-    radius: 1.5,
-    ),
-    ),
+          gradient: RadialGradient(
+            colors: [Color(0xff003b48), Color(0xff09242e),],
+            center: Alignment.center,
+            radius: 1.5,
+          ),
+        ),
       child: Column(children: [
       const SizedBox(width: 500, height: 300),
       ElevatedButton(

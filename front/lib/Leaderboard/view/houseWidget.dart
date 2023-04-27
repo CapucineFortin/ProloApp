@@ -28,22 +28,29 @@ Widget getTeamWidget(int index, House house){
         borderRadius: BorderRadius.circular(30)
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              (index+1).toString(),
-              style: TextStyle(
-                fontSize: 20,
-                color: color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Icon(
-                Icons.emoji_events,
-                color: color
+            SizedBox(
+              width: 50,
+              child: Row(children: [
+                Text(
+                  (index+1).toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                    Icons.emoji_events,
+                    color: color
+                ),
+              ],),
             ),
             Text(
                 house.name.stringify(),
-                  style: const TextStyle(
+                textAlign: TextAlign.left,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 )
