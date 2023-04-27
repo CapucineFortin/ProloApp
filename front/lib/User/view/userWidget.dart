@@ -22,7 +22,7 @@ Color getColor(Name name) {
 }
 
 Widget getUserWidget(User user, int index, int previousIndex) {
-  int diff = previousIndex - index;
+  int diff = user.previousIndex! - user.newIndex!;
   bool isUp = diff < 0;
 
   IconData icon;
@@ -37,10 +37,12 @@ Widget getUserWidget(User user, int index, int previousIndex) {
   }
 
   return Container(
-    height: 150,
-    padding: const EdgeInsets.all(30),
+    height: 100,
+    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
+      border: Border.all(
+        color: const Color(0xffFFD700)
+      ),
       gradient: const RadialGradient(
         colors: [Color(0xff003b48), Color(0xff09242e),],
         center: Alignment.center,
@@ -54,7 +56,11 @@ Widget getUserWidget(User user, int index, int previousIndex) {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+            color: Color(0xffFFD700)
           ),
+        ),
+        const SizedBox(
+          width: 20,
         ),
         SizedBox(
           height: 50,
@@ -71,6 +77,9 @@ Widget getUserWidget(User user, int index, int previousIndex) {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          width: 100,
         ),
         SizedBox(
           height: 50,

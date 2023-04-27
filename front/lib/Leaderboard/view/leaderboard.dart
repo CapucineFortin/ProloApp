@@ -7,7 +7,15 @@ import '../model/house.dart';
 class LeaderboardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<House>>(
+    return Container (
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            colors: [Color(0xff003b48), Color(0xff09242e),],
+            center: Alignment.center,
+            radius: 1.5,
+          ),
+        ),
+        child: FutureBuilder<List<House>>(
       future: sortedHouses(),
       builder: (BuildContext context, AsyncSnapshot<List<House>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,6 +41,7 @@ class LeaderboardWidget extends StatelessWidget {
           ),
         );
       },
+    )
     );
   }
 }
