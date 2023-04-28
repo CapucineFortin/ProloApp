@@ -18,3 +18,4 @@ class Contestant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='contestant')
     house = models.ForeignKey(House, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+    rank_checkpoint = models.IntegerField(default=0)

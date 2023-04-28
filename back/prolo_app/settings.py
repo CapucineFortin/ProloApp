@@ -122,3 +122,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery setup
+
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_TIMEZONE = 'UTC'
+CELERY_IMPORTS = ('ProloApp.tasks',)
+
+# Celery beat configuration
+CELERY_BEAT_SCHEDULE = {
+    'update_rank_checkpoint': {
+        'task': 'users_manager.tasks.update_rank_checkpoint',
+        'schedule': 10.0,  # 30 minutes
+    },
+}

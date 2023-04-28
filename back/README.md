@@ -39,6 +39,7 @@ Base url : http://localhost:8000/users_manager/
 | GET  | users_manager/contestants | get all contestants
 | GET  | users_manager/houses | get list of houses
 | GET  | users_manager/users | get list of users
+| GET  | leaderboard | get the users sorted by score and their progress since last checkpoint 
 
 Example post with curl:
 ```sh
