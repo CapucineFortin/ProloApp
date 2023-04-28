@@ -31,9 +31,12 @@ String decodeUtf8(String bytesString) {
 Widget userScoreWidget(User user){
   return Container(
       width: 300,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-        color: Color(0xffdf7f7f7),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        color: const Color(0xffdf7f7f7),
+        border: Border.all(
+            color: getColorFromHouse(user.house)
+        )
       ),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

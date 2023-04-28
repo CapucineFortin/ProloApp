@@ -44,13 +44,13 @@ Name getNamefromString(String value) {
 Color getColorFromHouse(Name house) {
   switch (house) {
     case Name.gryffindor:
-      return Colors.red;
+      return Color(0xffef476f);
     case Name.slytherin:
-      return Colors.green;
+      return Color(0xff06d6a0);
     case Name.hufflepuff:
-      return Colors.yellow;
+      return Color(0xffffd166);
     case Name.ravenclaw:
-      return Colors.blue;
+      return Color(0xff26547c);
     default:
       return Colors.black;
   }
