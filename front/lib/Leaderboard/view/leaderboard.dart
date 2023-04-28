@@ -15,12 +15,15 @@ class LeaderboardWidget extends StatelessWidget {
         ),
       ),
       child: Column(children: [
-        SizedBox(
-          height: 300,
-          child: housesWidget(),
+        Center(
+          child: SizedBox(
+            height: 300,
+            width: 400,
+            child: housesWidget(),
+          ),
         ),
         Container(
-          width: 450,
+          width: 500,
           height: 800,
           padding: const EdgeInsets.only(top: 20),
           decoration: const BoxDecoration(

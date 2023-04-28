@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proloapp/Leaderboard/model/name.dart';
 import 'package:proloapp/Leaderboard/view/house/rankWidget.dart';
 import 'package:proloapp/Leaderboard/view/house/scoreWidget.dart';
 import '../../model/house.dart';

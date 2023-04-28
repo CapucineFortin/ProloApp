@@ -4,7 +4,7 @@ import 'package:proloapp/Leaderboard/model/name.dart';
 import '../../model/house.dart';
 
 Widget houseScoreWidget(House house){
-  return Row(
+  return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
     children: [
