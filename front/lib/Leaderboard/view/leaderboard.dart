@@ -14,17 +14,17 @@ class LeaderboardWidget extends StatelessWidget {
           radius: 1.5,
         ),
       ),
+      width: 500,
       child: Column(children: [
         Center(
           child: SizedBox(
             height: 300,
-            width: 400,
             child: housesWidget(),
           ),
         ),
         Container(
-          width: 500,
           height: 800,
+          width: 600,
           padding: const EdgeInsets.only(top: 20),
           decoration: const BoxDecoration(
             color: Colors.white,

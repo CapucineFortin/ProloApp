@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
         home: DefaultTabController(
-            initialIndex: 1,
+            initialIndex: 0,
             length: 3,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(

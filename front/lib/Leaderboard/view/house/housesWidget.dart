@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:proloapp/Leaderboard/view/house/podiumWidget.dart';
 import '../../controller/houseController.dart';
 import '../../model/house.dart';
-import 'houseWidget.dart';
 
 Widget housesWidget() {
   return FutureBuilder<List<House>>(
@@ -18,19 +17,8 @@ Widget housesWidget() {
       final houses = snapshot.data!;
       return Center(
         child: SizedBox(
-          height: 400,
-          width: 350,
+          width: 500,
           child: housesPodiumWidget(houses)
-          // child: ListView.separated(
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemCount: 4,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     return getTeamWidget(index, houses[index]);
-          //   },
-          //   separatorBuilder: (BuildContext context, int index) {
-          //     return const SizedBox(height: 10);
-          //   },
-          // ),
         ),
       );
     },

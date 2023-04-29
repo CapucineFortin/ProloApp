@@ -12,14 +12,12 @@ Color getColor(int index) {
     case 2:
       return const Color(0xFFCD7F32);
     default:
-      return Colors.white;
+      return Colors.black;
   }
 }
 
 Widget houseRankWidget(int index, House house){
   return Container(
-    padding: const EdgeInsets.only(left: 20),
-    width: 60,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

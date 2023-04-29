@@ -8,11 +8,20 @@ import '../../model/house.dart';
 Widget houseStepWidget(House house, int rank, int maxPoint){
   return Center(
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            houseScoreWidget(house),
+            Text(
+                house.name.stringify(),
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: CupertinoColors.white
+                )
+            ),
             houseRankWidget(rank, house),
             Container(
               height: 50 + (house.points /maxPoint*100),
@@ -24,6 +33,7 @@ Widget houseStepWidget(House house, int rank, int maxPoint){
                   topLeft: Radius.circular(30)
                 )
               ),
+              child: houseScoreWidget(house)
             )
           ],
         ),
