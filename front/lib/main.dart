@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proloapp/User/view/users.dart';
 import 'package:proloapp/Home/view/home.dart';
 
 import 'Leaderboard/view/leaderboard.dart';
@@ -10,8 +9,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +31,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
         home: DefaultTabController(
-            initialIndex: 0,
+            initialIndex: 1,
             length: 3,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(

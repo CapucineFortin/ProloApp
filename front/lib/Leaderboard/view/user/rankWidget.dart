@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import '../../model/user.dart';
 
 Widget userRankWidget(User user){
-  int diff = user.progress;
   IconData icon;
   Color color;
-  if (diff < 0) {
+  if (user.progress! > 0) {
     icon = Icons.arrow_drop_up;
     color = Colors.green;
-    diff = -diff;
-  } else if(diff > 0) {
+  } else if (user.progress! < 0) {
     icon = Icons.arrow_drop_down;
     color = Colors.red;
-  }
-  else {
+  } else {
     icon = Icons.remove;
     color = Colors.black;
   }
@@ -27,13 +24,14 @@ Widget userRankWidget(User user){
           color: Colors.black
       ),
     ),
+    const SizedBox(width: 20),
     SizedBox(
       height: 50,
       child: Column(
         children: [
           Icon(icon, color: color),
           Text(
-            diff.toString(),
+            user.progress!.abs().toString(),
             style: TextStyle(
               fontSize: 15,
               color: color,

@@ -6,8 +6,8 @@ class User {
   String login;
   Name house;
   int points;
-  int rank;
-  int progress;
+  int? rank;
+  int? progress;
 
   User(this.login, this.house, this.points, this.rank, this.progress);
 
@@ -16,8 +16,8 @@ class User {
       json['username'] as String,
       getNamefromString(json['house']),
       json['score'] as int,
-      json['rank'] as int,
-      json['progress'] as int,
+      json['rank'] as int?,
+      json['progress'] as int?,
     );
   }
 }

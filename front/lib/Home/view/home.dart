@@ -28,12 +28,15 @@ class HomeWidget extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const QRReader(),
             ));},
-          child: Text('Scan QR code')),
+          child: const Text('Scan QR code')),
       Text(qrValue),
       const SizedBox(
         height: 70,
       ),
-      TextField(controller: _textEditingController),
+      SizedBox(
+        width: 100,
+        child: TextField(controller: _textEditingController),
+      ),
       const SizedBox(
         height: 30,
       ),
