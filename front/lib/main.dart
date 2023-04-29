@@ -51,7 +51,6 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       LeaderboardWidget(),
                       HomeWidget(qrValue: qrValue),
-                      UserWidget()
                     ])
             )
         )

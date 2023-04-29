@@ -7,21 +7,6 @@ import 'package:flutter/material.dart';
 import '../../model/name.dart';
 import '../../model/user.dart';
 
-Color getColor(Name name) {
-  switch (name) {
-    case Name.gryffindor:
-      return const Color(0xffa6332e);
-    case Name.slytherin:
-      return const Color(0xff366447);
-    case Name.hufflepuff:
-      return const Color(0xffefbc2f);
-    case Name.ravenclaw:
-      return const Color(0xff3c4e91);
-    default:
-      return const Color(0xff000000);
-  }
-}
-
 String decodeUtf8(String bytesString) {
   List<int> bytes = bytesString.codeUnits;
   Utf8Decoder utf8decoder = const Utf8Decoder(allowMalformed: true);

@@ -5,18 +5,18 @@ import 'name.dart';
 class User {
   String login;
   Name house;
-  int rank;
   int points;
+  int rank;
   int progress;
 
-  User(this.login, this.house, this.rank, this.points, this.progress);
+  User(this.login, this.house, this.points, this.rank, this.progress);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       json['username'] as String,
       getNamefromString(json['house']),
-      json['rank'] as int,
       json['score'] as int,
+      json['rank'] as int,
       json['progress'] as int,
     );
   }

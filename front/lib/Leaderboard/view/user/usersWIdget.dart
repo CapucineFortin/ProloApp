@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proloapp/Leaderboard/view/user/userWidget.dart';
 import '../../controller/userController.dart';
@@ -19,7 +18,7 @@ Widget usersWidget() {
               return ListView.separated(
                     itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return getUserWidget(sort(users)[index], index, 0);
+                      return getUserWidget(users[index], index, 0);
                     }, separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(height: 5);
                   },
