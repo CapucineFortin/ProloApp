@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/user.dart';
 
-Widget userRankWidget(int index, User user){
-  int diff = (user.previousIndex ?? 0) - (user.newIndex ?? 0);
-
+Widget userRankWidget(User user){
+  int diff = user.progress;
   IconData icon;
   Color color;
   if (diff < 0) {
@@ -22,7 +20,7 @@ Widget userRankWidget(int index, User user){
   }
   return Row(children: [
     Text(
-      (index + 1).toString(),
+      (user.rank).toString(),
       style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,

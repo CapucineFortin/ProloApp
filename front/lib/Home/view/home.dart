@@ -41,20 +41,10 @@ class HomeWidget extends StatelessWidget {
         onPressed: () async {
 
           final User? user = await getContestant(test);
-          List<User> users = await getAllUser();
-
-          for (var user in users) {
-            user.previousIndex = getIndex(users, user.login);
-          }
 
           final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0;
           await updateContestant(user!, pointsToAdd);
 
-          for (var user in users) {
-            user.newIndex = getIndex(users, user.login);
-          }
-
-          // Clear the text field
           _textEditingController.clear();
         },
         child: const Text("Valider"),
