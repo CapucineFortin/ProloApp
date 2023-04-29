@@ -35,7 +35,7 @@ def compute_leaderboard():
         {
             'username': c.user.username,
             'house': c.house.name,
-            'total_score': c.total_score,
+            'score': c.total_score,
             'rank': c.rank,
             'progress': -c.progress,
         }
@@ -57,7 +57,7 @@ def get_house_contestants(request, house_name):
     contestants = Contestant.objects.filter(house=house).select_related('user')
     response_data = {
         'house': house_name,
-        "total_score": house.total_score(),
+        "score": house.total_score(),
         'contestants': [{
             'username': contestant.user.username,
             'name': f'{contestant.user.first_name} {contestant.user.last_name}',
