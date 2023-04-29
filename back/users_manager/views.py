@@ -109,4 +109,4 @@ def leaderboard(request):
     leaderboard_data = compute_leaderboard()
 
     # Return a JsonResponse containing the leaderboard data
-    return JsonResponse({'leaderboard': leaderboard_data})
+    return JsonResponse(leaderboard_data)
