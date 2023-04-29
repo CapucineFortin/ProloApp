@@ -33,7 +33,7 @@ Widget userScoreWidget(User user){
       width: 300,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(30)),
-        color: const Color(0xffdf7f7f7),
+        color: const Color(0xfff7f7f7),
         border: Border.all(
             color: getColorFromHouse(user.house)
         )

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proloapp/Leaderboard/view/house/housesWidget.dart';
 import 'package:proloapp/Leaderboard/view/user/usersWIdget.dart';
