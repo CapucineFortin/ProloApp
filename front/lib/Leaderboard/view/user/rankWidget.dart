@@ -17,8 +17,8 @@ Widget userRankWidget(int index, User user){
     color = Colors.red;
   }
   else {
-    icon = Icons.arrow_drop_up;
-    color = Colors.transparent;
+    icon = Icons.remove;
+    color = Colors.black;
   }
   return Row(children: [
     Text(
@@ -37,7 +37,7 @@ Widget userRankWidget(int index, User user){
           Text(
             diff.toString(),
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 15,
               color: color,
               fontWeight: FontWeight.bold,
             ),
