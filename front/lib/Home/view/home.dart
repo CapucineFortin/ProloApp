@@ -93,7 +93,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ElegantNotification.success(
                   title: const Text("Success"),
                   description: Text(
-                      "Tu à ajouté ${pointsToAdd.toString()} points à $test")
+                      "Tu as ajouté ${pointsToAdd.toString()} points à $test")
               ).show(context);
             } catch (e) {
               ElegantNotification.error(
