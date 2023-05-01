@@ -91,7 +91,8 @@ def set_contestant_score(request, username):
         data = json.loads(request.body.decode('utf-8'))
         try:
             contestant = Contestant.objects.get(user__username=username)
-            contestant.score = data['score']
+            if data['score'] >= 0:
+                contestant.score = data['score']
             contestant.save()
             return JsonResponse({'success': True, 'leaderboard': compute_leaderboard()})
         except Contestant.DoesNotExist:
