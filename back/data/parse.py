@@ -1,5 +1,6 @@
 import csv
-from users_manager.models import Contestant, House, User
+from users_manager.models import User
+from finale.models import Contestant, House
 import random
 
 def import_all():
@@ -17,5 +18,5 @@ def import_all():
                                         is_staff = row["is_staff"])
             if row["is_staff"] == "0":
                 house, _ = House.objects.get_or_create(name=houses[random.randint(0, 3)])
-                contestant = Contestant.objects.create(user=user, house=house, score=0)
+                contestant = Contestant.objects.create(user=user, house=house, score=0, rank_checkpoint=1)
                 contestant.save()
