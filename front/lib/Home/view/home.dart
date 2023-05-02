@@ -84,7 +84,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ElegantNotification.info(
                 title: const Text("Warning"),
                 description: const Text(
-                    "Tu n'as choisi le nombre de points à attribuer")
+                    "Tu n'as pas choisi le nombre de points à attribuer")
             ).show(context);
           } else {
             try {

@@ -17,7 +17,7 @@ Widget housesWidget() {
       final houses = snapshot.data!;
       return Center(
         child: SizedBox(
-          width: 500,
+          width: 350,
           child: housesPodiumWidget(houses)
         ),
       );

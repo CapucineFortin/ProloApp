@@ -37,6 +37,7 @@ dependencies:
   qr_code_scanner: ^1.0.1
   http: ^0.13.3
   elegant_notification: ^1.9.1
+  # auth0_flutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:

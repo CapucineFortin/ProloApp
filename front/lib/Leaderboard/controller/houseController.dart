@@ -1,14 +1,10 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 
 import '../model/house.dart';
-import '../model/name.dart';
 
 Future<List<House>> getAllHouse() async {
-  final response = await http.get(Uri.parse('http://127.0.0.1:8000/users_manager/houses'));
+  final response = await http.get(Uri.parse('https://proloapp.herokuapp.com/finale/houses'));
   if (response.statusCode == 200) {
     return houseListFromJson(response.body);
   } else {

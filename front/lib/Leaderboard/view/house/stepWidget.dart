@@ -24,7 +24,7 @@ Widget houseStepWidget(House house, int rank, int maxPoint){
             ),
             houseRankWidget(rank, house),
             Container(
-              height: 50 + (house.points /maxPoint*100),
+              height: maxPoint != 0 ? 10 + (house.points /maxPoint*100) : 20,
               width: 50,
               decoration: BoxDecoration(
                 color: getColorFromHouse(house.name),

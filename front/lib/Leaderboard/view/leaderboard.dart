@@ -22,7 +22,7 @@ class LeaderboardWidget extends StatelessWidget {
           ),
         ),
         Container(
-          height: 800,
+          height: 700,
           width: 600,
           padding: const EdgeInsets.only(top: 20),
           decoration: const BoxDecoration(

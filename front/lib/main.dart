@@ -17,13 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(qrValue: ''),
+      home: MyHomePage(qrValue: ''),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.qrValue}) : super(key: key);
+  //late Auth0? autho0;
+  MyHomePage({Key? key, required this.qrValue}) : super(key: key);
 
   final String qrValue;
 
@@ -32,7 +33,7 @@ class MyHomePage extends StatelessWidget {
     return  MaterialApp(
         home: DefaultTabController(
             initialIndex: 1,
-            length: 3,
+            length: 2,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(
                   child : TabBar(
@@ -40,7 +41,6 @@ class MyHomePage extends StatelessWidget {
                     tabs: [
                       Tab(icon: Icon(Icons.leaderboard)),
                       Tab(icon: Icon(Icons.home)),
-                      Tab(icon: Icon(Icons.person)),
                     ],
                   ),
                 ),
