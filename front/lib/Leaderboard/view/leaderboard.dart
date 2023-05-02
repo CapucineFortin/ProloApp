@@ -21,6 +21,7 @@ class LeaderboardWidget extends StatelessWidget {
             child: housesWidget(),
           ),
         ),
+        Expanded(child:
         Container(
           height: 700,
           width: 600,
@@ -33,7 +34,7 @@ class LeaderboardWidget extends StatelessWidget {
             )
           ),
           child: usersWidget(),
-          )
+          ))
         ],)
     );
   }

@@ -6,25 +6,22 @@ import 'package:proloapp/Leaderboard/view/house/scoreWidget.dart';
 import '../../model/house.dart';
 
 Widget houseStepWidget(House house, int rank, int maxPoint){
-  return Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
+  return Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
             Text(
                 house.name.stringify(),
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 20,
+                style: const TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: CupertinoColors.white
                 )
             ),
             houseRankWidget(rank, house),
             Container(
-              height: maxPoint != 0 ? 10 + (house.points /maxPoint*100) : 20,
+              height: maxPoint != 0 ? 50 + (house.points /maxPoint*100) : 20,
               width: 50,
               decoration: BoxDecoration(
                 color: getColorFromHouse(house.name),
@@ -36,8 +33,5 @@ Widget houseStepWidget(House house, int rank, int maxPoint){
               child: houseScoreWidget(house)
             )
           ],
-        ),
-      ],
-    )
   );
 }
