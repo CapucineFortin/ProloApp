@@ -5,9 +5,9 @@ import '../controller/homeController.dart';
 import '../controller/qrScan.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key, required this.qrValue}) : super (key: key);
+  HomeWidget({Key? key, required this.qrValue}) : super (key: key);
 
-  final String qrValue;
+  String qrValue;
 
   @override
   State<StatefulWidget> createState() {
@@ -15,7 +15,6 @@ class HomeWidget extends StatefulWidget {
   }
 }
 class _HomeWidgetState extends State<HomeWidget> {
-  String test ='anton.avilov';
   late List<bool> _selectedActivity = <bool>[false, false, false, false, false];
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -29,6 +28,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context){
+    final String qrValue = widget.qrValue;
     return Container (
         decoration: const BoxDecoration(
           gradient: RadialGradient(
@@ -80,7 +80,14 @@ class _HomeWidgetState extends State<HomeWidget> {
         ElevatedButton(
         onPressed: () async {
           final int pointsToAdd = int.tryParse(_textEditingController.text) ?? 0 ;
-          if (pointsToAdd == 0) {
+          if (widget.qrValue == ""){
+            ElegantNotification.info(
+                title: const Text("Attention"),
+                description: const Text(
+                    "Tu n'as pas scanné de qrCode")
+            ).show(context);
+          }
+          else if (pointsToAdd == 0) {
             ElegantNotification.info(
                 title: const Text("Warning"),
                 description: const Text(
@@ -88,23 +95,25 @@ class _HomeWidgetState extends State<HomeWidget> {
             ).show(context);
           } else {
             try {
-              final User? user = await getContestant(test);
+              final User? user = await getContestant(qrValue.trim());
               await updateContestant(user!, pointsToAdd);
               ElegantNotification.success(
                   title: const Text("Success"),
                   description: Text(
-                      "Tu as ajouté ${pointsToAdd.toString()} points à $test")
+                      "Tu as ajouté ${pointsToAdd.toString()} points à $qrValue")
               ).show(context);
+              _textEditingController.clear();
+              setState(() {
+                _selectedActivity = <bool>[false, false, false, false, false];
+              });
+              widget.qrValue = "";
             } catch (e) {
               ElegantNotification.error(
                   title: const Text("Error"),
-                  description: Text("Le compte de $test n'a pas été trouvé")
+                  description: Text("L'ajout n'a pas fonctionné")
               ).show(context);
             }
-            _textEditingController.clear();
-            setState(() {
-              _selectedActivity = <bool>[false, false, false, false, false];
-            });
+
           }
         },
         child: const Text("Valider"),
