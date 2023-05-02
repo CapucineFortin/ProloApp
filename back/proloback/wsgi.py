@@ -1,16 +1,16 @@
 """
-WSGI config for prolo_app project.
+WSGI config for proloback project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 """
 
 import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'prolo_app.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proloback.settings')
 
 application = get_wsgi_application()
