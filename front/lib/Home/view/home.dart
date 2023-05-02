@@ -89,7 +89,12 @@ class _HomeWidgetState extends State<HomeWidget> {
             setState(() {
               _selectedActivity = <bool>[false, false, false, false, false];
             });
-          }
+          },
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20
+          )
         ),
       ),
         const SizedBox(height: 100),
