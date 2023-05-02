@@ -49,7 +49,7 @@ class _QRReaderState extends State<QRReader> {
                   ElevatedButton(
                       onPressed: () async {
                         await controller?.stopCamera();
-                        Navigator.pop(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                           builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code! ),
