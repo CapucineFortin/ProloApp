@@ -44,13 +44,21 @@ class _HomeWidgetState extends State<HomeWidget> {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const QRReader(),
               ));},
-            child: const Text('Scan QR code')),
-        Text(widget.qrValue),
+            child: const Text('Scanner un QR code')),
+        const SizedBox(height: 50),
+        Text(
+            widget.qrValue,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+          ),
+        ),
+        const SizedBox(height: 100),
         ToggleButtons(
         direction:  Axis.horizontal,
         onPressed: (int index) {
           setState(() {
-            // The button that is tapped is set to true, and the others to false.
             for (int i = 0; i < _selectedActivity.length; i++) {
               _selectedActivity[i] = i == index;
             }
@@ -65,7 +73,15 @@ class _HomeWidgetState extends State<HomeWidget> {
         isSelected: _selectedActivity,
         children: icons,
       ),
-      SizedBox(
+        const SizedBox(height: 25),
+        const Text(
+            'ou',
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 15
+          )),
+        const SizedBox(height: 25),
+        SizedBox(
         width: 100,
         child: TextField(
           controller: _textEditingController,

@@ -47,8 +47,9 @@ class _QRReaderState extends State<QRReader> {
                   else
                     const Text('Scan a code'),
                   ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
+                      onPressed: () async {
+                        await controller?.stopCamera();
+                        Navigator.pop(
                             context,
                             MaterialPageRoute(
                           builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code! ),
@@ -108,7 +109,6 @@ class _QRReaderState extends State<QRReader> {
 
   @override
   void dispose() {
-    controller!.stopCamera();
     controller?.dispose();
     super.dispose();
   }
