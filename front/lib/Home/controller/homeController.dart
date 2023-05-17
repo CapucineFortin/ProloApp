@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:proloapp/Leaderboard/model/name.dart';
-
 import '../../Leaderboard/model/user.dart';
 
 import 'package:http/http.dart' as http;

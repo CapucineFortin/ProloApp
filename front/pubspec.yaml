@@ -37,8 +37,8 @@ dependencies:
   qr_code_scanner: ^1.0.1
   http: ^0.13.3
   elegant_notification: ^1.9.1
-  # auth0_flutter: ^1.0.0
-
+  font_awesome_flutter: ^10.4.0
+  community_material_icon: ^5.9.55
 
 
 

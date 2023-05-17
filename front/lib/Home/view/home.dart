@@ -1,8 +1,11 @@
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:community_material_icon/community_material_icon.dart';
 import '../../Leaderboard/model/user.dart';
 import '../controller/homeController.dart';
 import '../controller/qrScan.dart';
+
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key? key, required this.qrValue}) : super (key: key);
@@ -15,16 +18,24 @@ class HomeWidget extends StatefulWidget {
   }
 }
 class _HomeWidgetState extends State<HomeWidget> {
-  late List<bool> _selectedActivity = <bool>[false, false, false, false, false];
   final TextEditingController _textEditingController = TextEditingController();
 
   static const List<Widget> icons = <Widget>[
-    Icon(Icons.local_dining),
-    Icon(Icons.videogame_asset),
-    Icon(Icons.search),
-    Icon(Icons.mic),
+    Icon(FontAwesomeIcons.ticket),
+    Icon(FontAwesomeIcons.chair),
+    Icon(CommunityMaterialIcons.castle),
     Icon(Icons.music_note),
+    Icon(CommunityMaterialIcons.microphone),
+    Icon(FontAwesomeIcons.wolfPackBattalion),
+    Icon(CommunityMaterialIcons.lipstick),
+    Icon(CommunityMaterialIcons.treasure_chest),
+    Icon(Icons.search),
+    Icon(Icons.videogame_asset),
+    Icon(Icons.question_mark),
+    Icon(Icons.more_horiz)
   ];
+  late List<bool> _selectedActivity = List.generate(icons.length, (_) => false);
+  final List<String> _defaultPoints = ["5", "10", "10", "10","20", "10", "30", "5", "5", "10", "10", "0"];
 
   @override
   Widget build(BuildContext context){
@@ -62,34 +73,40 @@ class _HomeWidgetState extends State<HomeWidget> {
             for (int i = 0; i < _selectedActivity.length; i++) {
               _selectedActivity[i] = i == index;
             }
+            _textEditingController.text = _defaultPoints[index];
           });
-          _textEditingController.clear();
         },
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         selectedBorderColor: Colors.blue[700],
         selectedColor: Colors.white,
         fillColor: Colors.blue[200],
         color: Colors.blue[400],
-        isSelected: _selectedActivity,
-        children: icons,
+        isSelected: _selectedActivity.sublist(0,6),
+        children: icons.sublist(0,6),
       ),
-        const SizedBox(height: 25),
-        const Text(
-            'ou',
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 15
-          )),
+      ToggleButtons(
+        direction:  Axis.horizontal,
+        onPressed: (int index) {
+          setState(() {
+            for (int i = 0; i < _selectedActivity.length; i++) {
+              _selectedActivity[i] = i == index + 6 ;
+            }
+            _textEditingController.text = _defaultPoints[index+6];
+          });
+        },
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        selectedBorderColor: Colors.blue[700],
+        selectedColor: Colors.white,
+        fillColor: Colors.blue[200],
+        color: Colors.blue[400],
+        isSelected: _selectedActivity.sublist(6),
+        children: icons.sublist(6),
+      ), 
         const SizedBox(height: 25),
         SizedBox(
         width: 100,
         child: TextField(
           controller: _textEditingController,
-          onChanged: (value) {
-            setState(() {
-              _selectedActivity = <bool>[false, false, false, false, false];
-            });
-          },
           textAlign: TextAlign.center,
           style: const TextStyle(
               color: Colors.white,
@@ -125,7 +142,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ).show(context);
               _textEditingController.clear();
               setState(() {
-                _selectedActivity = <bool>[false, false, false, false, false];
+                _selectedActivity = List.generate(icons.length, (_) => false);
               });
               widget.qrValue = "";
             } catch (e) {
