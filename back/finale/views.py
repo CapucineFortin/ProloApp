@@ -96,9 +96,9 @@ def eaten(request):
     today = datetime.datetime.today().day - 18
     meal_type = current_meal()
     try:
-        count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True)
-        orgas_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=True)
-        contestants_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=False)
+        count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True).count()
+        orgas_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=True).count()
+        contestants_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=False).count()
         return JsonResponse({"orgas": orgas_count,
                              "contestants": contestants_count,
                               "total": count}, safe=False)
