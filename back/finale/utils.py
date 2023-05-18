@@ -1,6 +1,6 @@
 from django.db.models import Sum
 from .models import Contestant, Score
-import datetime, time
+from datetime import datetime, time
 
 def get_contestant_score(username):
     try:
@@ -42,7 +42,6 @@ def compute_leaderboard():
     return ranked_leaderboard
 
 def current_meal():
-
     def is_current_time_in_range(start_time, end_time):
         current_time = datetime.now().time()
         return start_time <= current_time <= end_time
