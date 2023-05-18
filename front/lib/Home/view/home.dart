@@ -36,7 +36,30 @@ class _HomeWidgetState extends State<HomeWidget> {
   ];
   late List<bool> _selectedActivity = List.generate(icons.length, (_) => false);
   final List<String> _defaultPoints = ["5", "10", "10", "10","20", "10", "30", "5", "5", "10", "10", "0"];
+  final List<String> _nameActivity = [
+    "Kermesse",
+    "Chaises musicales",
+    "Gonflable",
+    "Blindtest",
+    "Karaoké",
+    "Loup garou",
+    "Atelier maquillage",
+    "Chasse aux trésors",
+    "Chasse aux orgas",
+    "Jeux vidéo",
+    "Question pour un Prolo",
+    "Autre",
+  ];
 
+
+  int getActivity(List<bool> list) {
+    for (int i = 0; i < list.length; i++) {
+      if (list[i]) {
+        return i;
+      }
+    }
+    return -1;
+  }
   @override
   Widget build(BuildContext context){
     final String qrValue = widget.qrValue;
@@ -103,6 +126,18 @@ class _HomeWidgetState extends State<HomeWidget> {
         children: icons.sublist(6),
       ), 
         const SizedBox(height: 25),
+        Text(
+          (() {
+            int index = getActivity(_selectedActivity);
+            if (index != -1) {
+              return _nameActivity[index];
+            } else {
+              return "";
+            }
+          })(),
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 25),
         SizedBox(
         width: 100,
         child: TextField(
@@ -134,7 +169,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           } else {
             try {
               final User? user = await getContestant(qrValue.trim());
-              await updateContestant(user!, pointsToAdd);
+              await updateContestant(user!, pointsToAdd, getActivity(_selectedActivity));
               ElegantNotification.success(
                   title: const Text("Success"),
                   description: Text(
@@ -148,7 +183,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             } catch (e) {
               ElegantNotification.error(
                   title: const Text("Error"),
-                  description: Text("L'ajout n'a pas fonctionné")
+                  description: const Text("L'ajout n'a pas fonctionné")
               ).show(context);
             }
 

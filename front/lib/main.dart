@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proloapp/Home/view/home.dart';
+import 'package:proloapp/Meal/view/meal.dart';
 
 import 'Leaderboard/view/leaderboard.dart';
 
@@ -33,7 +34,7 @@ class MyHomePage extends StatelessWidget {
     return  MaterialApp(
         home: DefaultTabController(
             initialIndex: 1,
-            length: 2,
+            length: 3,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(
                   child : TabBar(
@@ -41,6 +42,7 @@ class MyHomePage extends StatelessWidget {
                     tabs: [
                       Tab(icon: Icon(Icons.leaderboard)),
                       Tab(icon: Icon(Icons.home)),
+                      Tab(icon: Icon(Icons.local_dining))
                     ],
                   ),
                 ),
@@ -48,6 +50,7 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       LeaderboardWidget(),
                       HomeWidget(qrValue: qrValue),
+                      MealWidget(qrValue: qrValue)
                     ])
             )
         )
