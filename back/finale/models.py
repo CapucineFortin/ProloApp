@@ -1,5 +1,6 @@
 from django.db import models
 from users_manager.models import ProloginUser
+from django.utils import timezone
 
 class Contestant(models.Model):
     class House(models.IntegerChoices):
@@ -33,3 +34,15 @@ class Score(models.Model):
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
     points = models.IntegerField(default=0)
     category = models.IntegerField(choices=PointType.choices)
+
+class Meal(models.Model):
+    class MealType(models.IntegerChoices):
+        BREAKFAST   = 1, 'Breakfast'
+        LUNCH       = 2, 'Lunch'
+        DINNER      = 3, 'Dinner'
+
+    meal_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(ProloginUser, on_delete=models.CASCADE, related_name='meal')
+    day = models.IntegerField(default=0) # 0 = jeudi, 1 = vendredi, ...
+    meal_type = models.IntegerField(choices=MealType.choices)
+    eaten = models.BooleanField(default=False)

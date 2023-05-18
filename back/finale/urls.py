@@ -10,4 +10,5 @@ urlpatterns = [
     path('houses/<str:house_name>/', views.get_house_contestants, name='get_house_contestants'),
     path('houses/', views.get_houses, name='get_houses'),
     path('score/<str:username>/', views.set_score, name='set_contestant_score'),
+    path('meal/<str:username>/', views.meal, name='meal_set'),
 ]
