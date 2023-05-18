@@ -85,10 +85,13 @@ def meal(request, username):
         if meal.eaten:
             return JsonResponse(0, safe=False)
         else:
-            if request.method == 'POST':
-                meal.eaten = True
-                meal.save()
-            return JsonResponse(1, safe=False)
+            if not meal.eaten:
+                if request.method == 'POST':
+                    meal.eaten = True
+                    meal.save()
+                return JsonResponse(0, safe=False)
+            else:
+                return JsonResponse(1, safe=False)
     except Meal.DoesNotExist:
         return JsonResponse(-1, safe=False)
 
