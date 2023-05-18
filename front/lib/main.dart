@@ -18,22 +18,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(qrValue: ''),
+      home: MyHomePage(qrValue: '', page: 1),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  //late Auth0? autho0;
-  MyHomePage({Key? key, required this.qrValue}) : super(key: key);
+  MyHomePage({Key? key, required this.qrValue, required this.page}) : super(key: key);
 
   final String qrValue;
+  final int page;
 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
         home: DefaultTabController(
-            initialIndex: 1,
+            initialIndex: page,
             length: 3,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(

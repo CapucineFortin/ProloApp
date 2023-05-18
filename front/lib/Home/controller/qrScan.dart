@@ -52,7 +52,7 @@ class _QRReaderState extends State<QRReader> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                          builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code! ),
+                          builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code!, page: 1),
                         ));
                       },
                     child: const Text('Valider')
