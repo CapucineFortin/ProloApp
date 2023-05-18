@@ -5,11 +5,11 @@ import 'package:proloapp/Meal/view/meal.dart';
 import 'Leaderboard/view/leaderboard.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(qrValue: '', page: 1),
+      home: const MyHomePage(qrValue: '', page: 1),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key, required this.qrValue, required this.page}) : super(key: key);
+  const MyHomePage({Key? key, required this.qrValue, required this.page}) : super(key: key);
 
   final String qrValue;
   final int page;

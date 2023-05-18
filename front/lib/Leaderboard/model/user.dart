@@ -8,9 +8,8 @@ class User {
   int points;
   int? rank;
   int? progress;
-  bool? hasEaten;
-
-  User(this.login, this.house, this.points, this.rank, this.progress, this.hasEaten);
+  List<int>? activities;
+  User(this.login, this.house, this.points, this.rank, this.progress, this.activities);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -19,7 +18,7 @@ class User {
       json['score'] as int,
       json['rank'] as int?,
       json['progress'] as int?,
-      json['hasEaten'] as bool?
+      json['activities'] as List<int>?
     );
   }
 }

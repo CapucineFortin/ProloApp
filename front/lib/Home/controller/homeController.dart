@@ -16,14 +16,13 @@ Future<User?> getContestant(String login) async {
 }
 
 Future<void> updateContestant(User contestant, int points, int activity) async {
-  contestant.points += points;
   final response = await http.post(
     Uri.parse('http://88.126.10.70:34/finale/score/${contestant.login}/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, dynamic>{
-      'points': contestant.points,
+      'points': points,
       'point_type': activity,
     }),
   );
