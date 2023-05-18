@@ -8,7 +8,7 @@ def go():
         reader=csv.DictReader(csvfile, fieldnames=['login', 'lastname', 'firstname'])
         for row in reader:
             user = ProloginUser.objects.create(username=row['login'],
-                                        first_name= row["login"],
+                                        first_name= row["firstname"],
                                         last_name= row["lastname"],
                                         email = f'{row["login"]}@prologin.dog',
                                         is_staff = False)

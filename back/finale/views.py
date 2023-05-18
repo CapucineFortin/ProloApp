@@ -97,6 +97,12 @@ def eaten(request):
     meal_type = current_meal()
     try:
         count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True)
-        return JsonResponse(count, safe=False)
+        orgas_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=True)
+        contestants_count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True, user__is_staff=False)
+        return JsonResponse({"orgas": orgas_count,
+                             "contestants": contestants_count,
+                              "total": count}, safe=False)
     except :
-        return JsonResponse(-1, safe=False)
+        return JsonResponse({"orgas": 0,
+                             "contestants": 0,
+                              "total": 0}, safe=False)

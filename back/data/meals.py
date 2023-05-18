@@ -18,7 +18,7 @@ def orgas(day=0, meal_type=3):
     with open('data/orgas_meal.csv', newline='') as csvfile:
         reader=csv.DictReader(csvfile, fieldnames=['login', 'lastname', 'firstname', 'eating'])
         for row in reader:
-            if row['eating'] == "OUI":
+            if row['eating'] == "NON":
                 try:
                     user = ProloginUser.objects.get(username=row['login'])
                     meal = Meal.objects.create(user=user, day=day, meal_type=meal_type)
