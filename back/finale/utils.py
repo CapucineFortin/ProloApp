@@ -22,7 +22,7 @@ def compute_leaderboard():
     leaderboard.sort(key=lambda x: x[1], reverse=True)
 
     # Assign ranks to contestants with the same score
-    rank = 1
+    rank = 0
     prev_score = None
     ranked_leaderboard = []
     for entry in leaderboard:
