@@ -78,8 +78,8 @@ def set_score(request, username):
 
 @csrf_exempt
 def meal(request, username):    
-    today = datetime.datetime.today().day - 18
-    meal_type = current_meal()
+    today = 0 #datetime.datetime.today().day - 18
+    meal_type = 3#current_meal()
     try:
         meal = Meal.objects.get(user__username=username, day=today, meal_type=meal_type)
         if meal.eaten:
