@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contestant, Score
+from .models import Contestant, Score, Meal
 
 class ContestantAdmin(admin.ModelAdmin):
     list_filter = ('house',)
@@ -10,3 +10,4 @@ class ContestantAdmin(admin.ModelAdmin):
 
 admin.site.register(Contestant, ContestantAdmin)
 admin.site.register(Score)
+admin.site.register(Meal)

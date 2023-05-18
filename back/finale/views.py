@@ -3,7 +3,7 @@ from django.db.models import Sum
 from django.http import JsonResponse
 from .models import ProloginUser
 from .models import Contestant, Score, Meal
-from .utils import compute_leaderboard, get_contestant_score
+from .utils import compute_leaderboard, get_contestant_score, current_meal
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 import json
@@ -78,19 +78,25 @@ def set_score(request, username):
 
 @csrf_exempt
 def meal(request, username):    
-    if request.method == 'POST':
-        meal_type = int(request.body.decode('utf-8'))
-        today = datetime.datetime.today().day - 18
-        
-        try:
-            meal = Meal.objects.get(user__username=username, day=today, meal_type=meal_type)
-            if meal.eaten:
-                return JsonResponse(0, safe=False)
-            else:
+    meal_type = 3 #int(request.body.decode('utf-8'))
+    today = 0 #datetime.datetime.today().day - 18
+    try:
+        meal = Meal.objects.get(user__username=username, day=today, meal_type=meal_type)
+        if meal.eaten:
+            return JsonResponse(0, safe=False)
+        else:
+            if request.method == 'POST':
                 meal.eaten = True
                 meal.save()
-                return JsonResponse(1, safe=False)
-        except Meal.DoesNotExist:
-            return JsonResponse(-1, safe=False)
-    else:
+            return JsonResponse(1, safe=False)
+    except Meal.DoesNotExist:
+        return JsonResponse(-1, safe=False)
+
+def eaten(request):
+    today = datetime.datetime.today().day - 18
+    meal_type = current_meal()
+    try:
+        count = Meal.count_matching_meals(day=today, meal_type=meal_type, eaten=True)
+        return JsonResponse(count, safe=False)
+    except :
         return JsonResponse(-1, safe=False)

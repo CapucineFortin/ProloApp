@@ -1,6 +1,6 @@
-from parse import go
-from meals import contestants
+from data.parse import go
+from data.meals import contestants
 
 def all():
     go()
-    contestants()
+    contestants(0, 3)

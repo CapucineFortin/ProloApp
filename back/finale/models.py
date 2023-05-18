@@ -40,9 +40,14 @@ class Meal(models.Model):
         BREAKFAST   = 1, 'Breakfast'
         LUNCH       = 2, 'Lunch'
         DINNER      = 3, 'Dinner'
+        OTHER       = 0, 'Other'
 
     meal_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(ProloginUser, on_delete=models.CASCADE, related_name='meal')
     day = models.IntegerField(default=0) # 0 = jeudi, 1 = vendredi, ...
     meal_type = models.IntegerField(choices=MealType.choices)
     eaten = models.BooleanField(default=False)
+
+    @classmethod
+    def count_matching_meals(cls, day, meal_type, eaten):
+        return cls.objects.filter(day=day, meal_type=meal_type, eaten=eaten).count()
