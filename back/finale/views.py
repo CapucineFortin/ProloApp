@@ -83,15 +83,12 @@ def meal(request, username):
     try:
         meal = Meal.objects.get(user__username=username, day=today, meal_type=meal_type)
         if meal.eaten:
-            return JsonResponse(0, safe=False)
+            return JsonResponse(1, safe=False)
         else:
-            if not meal.eaten:
-                if request.method == 'POST':
-                    meal.eaten = True
-                    meal.save()
-                return JsonResponse(0, safe=False)
-            else:
-                return JsonResponse(1, safe=False)
+            if request.method == 'POST':
+                meal.eaten = True
+                meal.save()
+            return JsonResponse(0, safe=False)
     except Meal.DoesNotExist:
         return JsonResponse(-1, safe=False)
 
