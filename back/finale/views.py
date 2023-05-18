@@ -12,7 +12,7 @@ def get_contestant(request, username):
     score = Score.objects.filter(contestant=contestant).aggregate(total_score=Sum('points'))['total_score'] or 0
 
     contestant_info = {
-        'username': username,
+        'username': username if username != 'gurvan.biguet–kerloch' else 'gurvan.biguet-kerloch',
         'name': f'{contestant.user.first_name} {contestant.user.last_name}',
         'house': house_name,
         'score': score,
@@ -22,7 +22,7 @@ def get_contestant(request, username):
 def get_contestants(request):
     contestants = Contestant.objects.all()
     response = [{
-        'username': contestant.user.username,
+        'username': contestant.user.username if contestant.user.username != 'gurvan.biguet–kerloch' else 'gurvan.biguet-kerloch',
         'name': f'{contestant.user.first_name} {contestant.user.last_name}',
         'house': contestant.get_house_display(),
         'score': get_contestant_score(contestant.user.username),
@@ -47,7 +47,7 @@ def get_house_contestants(request, house_name):
     leaderboard = []
 
     for contestant in contestants:
-        username = contestant.user.username
+        username = contestant.user.username if contestant.user.username != 'gurvan.biguet–kerloch' else 'gurvan.biguet-kerloch'
         total_points = get_contestant_score(username)
         leaderboard.append((username, total_points))
 
