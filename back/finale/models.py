@@ -29,6 +29,7 @@ class Score(models.Model):
         QPUP        = 12, 'Question-Pour-un-Prolo'
         MISC        = 13, 'Misc'
 
+    score_id = models.AutoField(primary_key=True)
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
     points = models.IntegerField(default=0)
     category = models.IntegerField(choices=PointType.choices)
