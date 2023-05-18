@@ -1,107 +1,75 @@
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 from django.http import JsonResponse
-from .models import House, User, Contestant
-from django.db.models import F, Q, Count, Sum
+from .models import Contestant, Score
+from .utils import compute_leaderboard, get_contestant_score
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+def get_contestant(request, username):
+    contestant = get_object_or_404(Contestant, user__username=username)
+    house_name = contestant.get_house_display()
+    score = Score.objects.filter(contestant=contestant).aggregate(total_score=Sum('points'))['total_score'] or 0
 
-def compute_leaderboard():
-    # Get all the contestants and their total score
-    contestants = (
-        Contestant.objects
-        .select_related('user', 'house')
-        .annotate(total_score=Sum('score'))
-        .order_by('-total_score', 'user__username')
-    )
-
-    # Compute the ranking of the contestants based on their total score
-    ranking = {}
-    rank = 1
-    for c in contestants:
-        if c.total_score in ranking:
-            # If there are ex-aequo contestants, they should have the same rank
-            c.rank = ranking[c.total_score]
-        else:
-            c.rank = rank
-            ranking[c.total_score] = rank
-            rank += 1
-
-        # Compute the progress between the current rank and the previous checkpoint rank
-        c.progress = c.rank - c.rank_checkpoint
-
-    # Build a list of dictionaries containing each contestant's data
-    leaderboard_data = [
-        {
-            'username': c.user.username,
-            'house': c.house.name,
-            'score': c.total_score,
-            'rank': c.rank,
-            'progress': -c.progress,
-        }
-        for c in contestants
-    ]
-    return leaderboard_data
-
-def get_houses(request):
-    houses = House.objects.all()
-    response = [{
-        "name": house.name,
-        "score": house.total_score(),
-    } for house in houses]
-    return JsonResponse(response, safe=False)
-
-def get_house_contestants(request, house_name):
-    house = get_object_or_404(House, name=house_name)
-    contestants = Contestant.objects.filter(house=house).select_related('user')
-    response_data = {
+    contestant_info = {
+        'username': username,
+        'name': f'{contestant.user.first_name} {contestant.user.last_name}',
         'house': house_name,
-        "score": house.total_score(),
-        'contestants': [{
-            'username': contestant.user.username,
-            'name': f'{contestant.user.first_name} {contestant.user.last_name}',
-            'score': contestant.score
-        } for contestant in contestants]
+        'score': score,
     }
-    return JsonResponse(response_data, safe=False)
+    return JsonResponse(contestant_info, safe=False)
 
 def get_contestants(request):
     contestants = Contestant.objects.all()
     response = [{
         'username': contestant.user.username,
         'name': f'{contestant.user.first_name} {contestant.user.last_name}',
-        'house': contestant.house.name,
-        'score': contestant.score,
+        'house': contestant.get_house_display(),
+        'score': get_contestant_score(contestant.user.username),
         } for contestant in contestants]
-    return JsonResponse(response, safe=False)
+    return JsonResponse(response, safe=False)        
 
-def get_contestant(request, username):
-    contestant = get_object_or_404(Contestant, user__username=username)
-    data = {
-        'username': contestant.user.username,
-        'name': f'{contestant.user.first_name} {contestant.user.last_name}',
-        'house': contestant.house.name,
-        'score': contestant.score
-    }
-    return JsonResponse(data)
+def get_houses(request):
+    house_scores = Contestant.objects.values('house').annotate(total_score=Sum('score__points'))
+
+    # Create a list to store the results
+    results = []
+    for score in house_scores:
+        house = Contestant.House(score['house']).label
+        total_score = score['total_score']
+        result = {'name': house, 'points': total_score if total_score and total_score > 0 else 0}
+        results.append(result)
+
+    return JsonResponse(results, safe=False)
+
+def get_house_contestants(request, house_name):
+    contestants = Contestant.objects.filter(house=Contestant.House[house_name].value)
+    leaderboard = []
+
+    for contestant in contestants:
+        username = contestant.user.username
+        total_points = get_contestant_score(username)
+        leaderboard.append((username, total_points))
+
+    # Sort the leaderboard based on total points in descending order
+    leaderboard.sort(key=lambda x: x[1], reverse=True)
+
+    return leaderboard
+
+def leaderboard(request):
+    leaderboard_data = compute_leaderboard()
+    return JsonResponse(leaderboard_data, safe=False)
 
 @csrf_exempt
-def set_contestant_score(request, username):
+def set_score(request, username):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         try:
             contestant = Contestant.objects.get(user__username=username)
-            if data['score'] >= 0:
-                contestant.score = data['score']
-            contestant.save()
+            score = Score.objects.create(contestant=contestant, points=data['points'], category=data['point_type'])
+            score.save()
             return JsonResponse({'success': True, 'leaderboard': compute_leaderboard()})
         except Contestant.DoesNotExist:
             return JsonResponse({'error': 'Contestant not found'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
-
-def leaderboard(request):
-    leaderboard_data = compute_leaderboard()
-
-    # Return a JsonResponse containing the leaderboard data
-    return JsonResponse(leaderboard_data, safe=False)

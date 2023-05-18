@@ -1,19 +1,34 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from users_manager.models import User
-
-class House(models.Model):
-    name = models.CharField(max_length=10)
-    members = models.ManyToManyField(User, related_name='houses')
-
-    def __str__(self):
-        return self.name
-
-    def total_score(self):
-        return sum([c.score for c in self.contestant_set.all()])
+from users_manager.models import ProloginUser
 
 class Contestant(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='contestant')
-    house = models.ForeignKey(House, on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)
-    rank_checkpoint = models.IntegerField(default=1)
+    class House(models.IntegerChoices):
+        GRYFFINDOR  = 1, 'Gryffindor'
+        RAVENCLAW   = 2, 'Ravenclaw'
+        SLYTHERIN   = 3, 'Slytherin'
+        HUFFLEPUFF  = 4, 'Hufflepuff'
+        TEST        = 5, 'Test'
+
+    user = models.OneToOneField(ProloginUser, on_delete=models.CASCADE, related_name='contestant')
+    house = models.IntegerField(choices=House.choices, default=1)
+    rank_checkpoint = models.IntegerField(default=1)  
+    
+class Score(models.Model):
+    class PointType(models.IntegerChoices):
+        ANIMATION   = 1, 'Animation'
+        KERMESSE    = 2, 'Kermesse'
+        CHAISES     = 3, 'Chaises-Musicales'
+        GONFLABLE   = 4, 'Gonflable'
+        BLINDTEST   = 5, 'Blindtest'
+        KARAOKE     = 6, 'Karaoke'
+        LOUPGAROU   = 7, 'Loup-Garou'
+        MAQUILLAGE  = 8, 'Maquillage'
+        CHASSE_TRESOR = 9, 'Chasse-au-tresor'
+        CHASSE_ORGAS = 10, 'Chasse-aux-Orgas'
+        JEUX_VIDEOS = 11, 'Jeux-Videos'
+        QPUP        = 12, 'Question-Pour-un-Prolo'
+        MISC        = 13, 'Misc'
+
+    contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
+    points = models.IntegerField(default=0)
+    category = models.IntegerField(choices=PointType.choices)
