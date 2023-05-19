@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o054!)i&0w@44i=o8)@$t!jcsz9p3hf2z0-kg9nty7bpcg++m%'
+SECRET_KEY = 'django-insecure-h_$w2!r0&i_kh1s(=on91%^1hjj^yo3-9@)b8t%88csq-&&*60'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cron',
     'users_manager.apps.UsersManagerConfig',
     'finale.apps.FinaleConfig',
 ]
@@ -82,7 +83,9 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'users_manager.User'
+AUTH_USER_MODEL = "users_manager.ProloginUser"
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -125,3 +128,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRON_CLASSES = [
+    # Other cron jobs...
+    'finale.cron.UpdateCheckpointCronJob',
+]

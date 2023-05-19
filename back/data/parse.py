@@ -1,22 +1,25 @@
 import csv
-from users_manager.models import User
-from finale.models import Contestant, House
+from users_manager.models import ProloginUser
+from finale.models import Contestant
 import random
 
-def import_all():
-    houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"]
-    for house in houses:
-        House.objects.get_or_create(name=house)
-
+def go():
     with open('data/contestants.csv', newline='') as csvfile:
-        reader=csv.DictReader(csvfile, fieldnames=['username', 'lastname', 'firstname', 'is_staff'])
+        reader=csv.DictReader(csvfile, fieldnames=['login', 'lastname', 'firstname'])
         for row in reader:
-            user = User.objects.create(username=row['username'],
+            user = ProloginUser.objects.create(username=row['login'],
                                         first_name= row["firstname"],
                                         last_name= row["lastname"],
-                                        email = f'{row["username"]}@contest.idk',
-                                        is_staff = row["is_staff"])
-            if row["is_staff"] == "0":
-                house, _ = House.objects.get_or_create(name=houses[random.randint(0, 3)])
-                contestant = Contestant.objects.create(user=user, house=house, score=0, rank_checkpoint=1)
-                contestant.save()
+                                        email = f'{row["login"]}@prologin.dog',
+                                        is_staff = False)
+            contestant = Contestant.objects.create(user=user, house=random.randint(1, 4), rank_checkpoint=1)
+            contestant.save()
+
+    with open('data/orgas.csv', newline='') as csvfile:
+        reader=csv.DictReader(csvfile, fieldnames=['login', 'lastname', 'firstname'])
+        for row in reader:
+            user = ProloginUser.objects.create(username=row['login'],
+                                        first_name= row["login"],
+                                        last_name= row["lastname"],
+                                        email = f'{row["login"]}@prologin.org',
+                                        is_staff = True)
