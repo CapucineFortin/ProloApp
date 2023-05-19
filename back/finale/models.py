@@ -14,7 +14,7 @@ class Contestant(models.Model):
     rank_checkpoint = models.IntegerField(default=1)  
 
     def get_score_categories(self):
-            return list(self.score.values_list('category', flat=True).distinct())
+            return [i-1 for i in list(self.score.values_list('category', flat=True).distinct())]
 
 class Score(models.Model):
     class PointType(models.IntegerChoices):
