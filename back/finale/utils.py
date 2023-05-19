@@ -39,7 +39,7 @@ def compute_leaderboard():
         if entry[1] != prev_score:
             rank += 1
         tmp = {
-                "username": entry[0],
+                "username": entry[0] if entry[0] != 'gurvan.biguet–kerloch' else 'gurvan.biguet-kerloch',
                 "house": entry[2],
                 "score": entry[1],
                 "rank": rank,
