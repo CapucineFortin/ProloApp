@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_cron',
+    'django_crontab',
     'users_manager.apps.UsersManagerConfig',
     'finale.apps.FinaleConfig',
 ]
@@ -129,7 +129,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRON_CLASSES = [
-    # Other cron jobs...
-    'finale.cron.UpdateCheckpointCronJob',
+CRONJOBS = [
+    ('0,30 * * * *', 'finale.cron.updateCheckpointCronJob')
 ]
