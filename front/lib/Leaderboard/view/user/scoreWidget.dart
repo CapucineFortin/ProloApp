@@ -53,7 +53,7 @@ Widget userScoreWidget(User user){
             ),
             Expanded(
                 flex: 3,
-                child: userBadgesWidget([]))
+                child: userBadgesWidget(user.activities ?? []))
           ]
       )
   );

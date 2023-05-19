@@ -12,13 +12,14 @@ class User {
   User(this.login, this.house, this.points, this.rank, this.progress, this.activities);
 
   factory User.fromJson(Map<String, dynamic> json) {
+    final activities = json['activities'] != null ? List<int>.from(json['activities']) : null;
     return User(
       json['username'] as String,
       getNamefromString(json['house']),
       json['score'] as int,
       json['rank'] as int?,
       json['progress'] as int?,
-      json['activities'] as List<int>?
+      activities
     );
   }
 }

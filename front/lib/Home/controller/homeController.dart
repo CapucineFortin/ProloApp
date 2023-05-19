@@ -15,7 +15,7 @@ Future<User?> getContestant(String login) async {
   }
 }
 
-Future<void> updateContestant(User contestant, int points, int activity) async {
+Future<void> updateContestant(User contestant, int points, int pointType) async {
   final response = await http.post(
     Uri.parse('http://88.126.10.70:34/finale/score/${contestant.login}/'),
     headers: <String, String>{
@@ -23,7 +23,7 @@ Future<void> updateContestant(User contestant, int points, int activity) async {
     },
     body: jsonEncode(<String, dynamic>{
       'points': points,
-      'point_type': activity,
+      'point_type': pointType + 1,
     }),
   );
   if (response.statusCode != 200) {
