@@ -46,16 +46,16 @@ def current_meal():
         current_time = datetime.now().time()
         return start_time <= current_time <= end_time
 
+    delay = -2
     # Example usage:
-    BF_start = time(6, 0)  # 8:00 AM
-    BF_end = time(10, 30)  # 5:00 PM
+    BF_start = time(6 + delay, 0)  # 8:00 AM
+    BF_end = time(10 + delay, 30)  # 5:00 PM
     
-    LU_start = time(10, 30)  # 8:00 AM
-    LU_end = time(15, 0)  # 5:00 PM
+    LU_start = time(10 + delay, 30)  # 8:00 AM
+    LU_end = time(15 + delay, 0)  # 5:00 PM
     
-    DI_start = time(15, 0)  # 8:00 AM
-    DI_end = time(21, 0)  # 5:00 PM
-
+    DI_start = time(15 + delay, 0)  # 8:00 AM
+    DI_end = time(21 + delay, 0)  # 5:00 PM
 
     if is_current_time_in_range(BF_start, BF_end):
         return 1

@@ -1,6 +1,5 @@
 from django.db import models
 from users_manager.models import ProloginUser
-from django.utils import timezone
 
 class Contestant(models.Model):
     class House(models.IntegerChoices):
@@ -13,7 +12,8 @@ class Contestant(models.Model):
     user = models.OneToOneField(ProloginUser, on_delete=models.CASCADE, related_name='contestant')
     house = models.IntegerField(choices=House.choices, default=1)
     rank_checkpoint = models.IntegerField(default=1)  
-    
+
+
 class Score(models.Model):
     class PointType(models.IntegerChoices):
         ANIMATION   = 1, 'Animation'
@@ -34,6 +34,7 @@ class Score(models.Model):
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
     points = models.IntegerField(default=0)
     category = models.IntegerField(choices=PointType.choices)
+
 
 class Meal(models.Model):
     class MealType(models.IntegerChoices):
