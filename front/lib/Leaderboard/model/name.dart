@@ -13,13 +13,13 @@ extension NameExtension on Name {
   String stringify() {
     switch (this) {
       case Name.gryffindor:
-        return "Gryffindor";
+        return "OCocker";
       case Name.slytherin:
-        return "Slytherin";
+        return "Booldogues";
       case Name.hufflepuff:
-        return "Hufflepuff";
+        return "Labradocker";
       case Name.ravenclaw:
-        return "Ravenclaw";
+        return "Huskell";
       default:
         return "";
     }

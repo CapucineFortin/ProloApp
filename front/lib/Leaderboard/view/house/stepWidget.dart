@@ -14,7 +14,7 @@ Widget houseStepWidget(House house, int rank, int maxPoint){
                 house.name.stringify(),
                 textAlign: TextAlign.left,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                   color: CupertinoColors.white
                 )
