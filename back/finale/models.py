@@ -13,6 +13,8 @@ class Contestant(models.Model):
     house = models.IntegerField(choices=House.choices, default=1)
     rank_checkpoint = models.IntegerField(default=1)  
 
+    def get_score_categories(self):
+            return list(self.score.values_list('category', flat=True).distinct())
 
 class Score(models.Model):
     class PointType(models.IntegerChoices):
@@ -34,7 +36,6 @@ class Score(models.Model):
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
     points = models.IntegerField(default=0)
     category = models.IntegerField(choices=PointType.choices)
-
 
 class Meal(models.Model):
     class MealType(models.IntegerChoices):

@@ -2,6 +2,13 @@ from django.db.models import Sum
 from .models import Contestant, Score
 from datetime import datetime, time
 
+
+def get_house_int(display_string):
+    for choice in Contestant.House.choices:
+        if choice[1] == display_string:
+            return choice[0]
+    return None
+
 def get_contestant_score(username):
     try:
         contestant = Contestant.objects.get(user__username=username)  # Replace 'user_id' with the actual user ID

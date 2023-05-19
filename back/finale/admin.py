@@ -3,7 +3,7 @@ from .models import Contestant, Score, Meal
 
 class ContestantAdmin(admin.ModelAdmin):
     list_filter = ('house',)
-    list_display = ('contestant', 'house', 'score')
+    list_display = ('contestant', 'house')
 
     def contestant(self, obj):
         return (obj.user.username)

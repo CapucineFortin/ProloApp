@@ -3,7 +3,7 @@ from django.db.models import Sum
 from django.http import JsonResponse
 from .models import ProloginUser
 from .models import Contestant, Score, Meal
-from .utils import compute_leaderboard, get_contestant_score, current_meal
+from .utils import compute_leaderboard, get_contestant_score, current_meal, get_house_int
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 import json
@@ -18,6 +18,7 @@ def get_contestant(request, username):
         'name': f'{contestant.user.first_name} {contestant.user.last_name}',
         'house': house_name,
         'score': score,
+        'activities': contestant.get_score_categories() #FIXME
     }
     return JsonResponse(contestant_info, safe=False)
 
@@ -28,6 +29,7 @@ def get_contestants(request):
         'name': f'{contestant.user.first_name} {contestant.user.last_name}',
         'house': contestant.get_house_display(),
         'score': get_contestant_score(contestant.user.username),
+        'activities': contestant.get_score_categories(),
         } for contestant in contestants]
     return JsonResponse(response, safe=False)        
 
@@ -45,18 +47,21 @@ def get_houses(request):
     return JsonResponse(results, safe=False)
 
 def get_house_contestants(request, house_name):
-    contestants = Contestant.objects.filter(house=Contestant.House[house_name].value)
-    leaderboard = []
+    contestants = Contestant.objects.filter(house=get_house_int(house_name))
+    res = []
 
     for contestant in contestants:
         username = contestant.user.username if contestant.user.username != 'gurvan.biguet–kerloch' else 'gurvan.biguet-kerloch'
+        print(username)
         total_points = get_contestant_score(username)
-        leaderboard.append((username, total_points))
+        print(total_points)
+        res.append((username, total_points))
+        print("appended")
 
     # Sort the leaderboard based on total points in descending order
-    leaderboard.sort(key=lambda x: x[1], reverse=True)
+    res.sort(key=lambda x: x[1], reverse=True)
 
-    return leaderboard
+    return JsonResponse(res, safe=False)
 
 def leaderboard(request):
     leaderboard_data = compute_leaderboard()
@@ -64,6 +69,7 @@ def leaderboard(request):
 
 @csrf_exempt
 def set_score(request, username):
+    print(username)
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         try:
