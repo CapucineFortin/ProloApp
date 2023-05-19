@@ -18,19 +18,18 @@ class Contestant(models.Model):
 
 class Score(models.Model):
     class PointType(models.IntegerChoices):
-        ANIMATION   = 1, 'Animation'
-        KERMESSE    = 2, 'Kermesse'
-        CHAISES     = 3, 'Chaises-Musicales'
-        GONFLABLE   = 4, 'Gonflable'
-        BLINDTEST   = 5, 'Blindtest'
-        KARAOKE     = 6, 'Karaoke'
-        LOUPGAROU   = 7, 'Loup-Garou'
-        MAQUILLAGE  = 8, 'Maquillage'
-        CHASSE_TRESOR = 9, 'Chasse-au-tresor'
-        CHASSE_ORGAS = 10, 'Chasse-aux-Orgas'
-        JEUX_VIDEOS = 11, 'Jeux-Videos'
-        QPUP        = 12, 'Question-Pour-un-Prolo'
-        MISC        = 13, 'Misc'
+        KERMESSE    = 1, 'Kermesse'
+        CHAISES     = 2, 'Chaises-Musicales'
+        GONFLABLE   = 3, 'Gonflable'
+        BLINDTEST   = 4, 'Blindtest'
+        KARAOKE     = 5, 'Karaoke'
+        LOUPGAROU   = 6, 'Loup-Garou'
+        MAQUILLAGE  = 7, 'Maquillage'
+        CHASSE_TRESOR = 8, 'Chasse-au-tresor'
+        CHASSE_ORGAS = 9, 'Chasse-aux-Orgas'
+        JEUX_VIDEOS = 10, 'Jeux-Videos'
+        QPUP        = 11, 'Question-Pour-un-Prolo'
+        MISC        = 12, 'Misc'
 
     score_id = models.AutoField(primary_key=True)
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE, related_name='score')
