@@ -24,7 +24,9 @@ def compute_leaderboard():
     for contestant in contestants:
         username = contestant.user.username
         total_points = get_contestant_score(username)
-        leaderboard.append((username, total_points, Contestant.House(contestant.house).label, contestant.rank_checkpoint))
+        activities =  contestant.get_score_categories(),
+
+        leaderboard.append((username, total_points, Contestant.House(contestant.house).label, contestant.rank_checkpoint, activities))
 
     # Sort the leaderboard based on total points in descending order
     leaderboard.sort(key=lambda x: x[1], reverse=True)
@@ -41,7 +43,9 @@ def compute_leaderboard():
                 "house": entry[2],
                 "score": entry[1],
                 "rank": rank,
-                "progress": entry[3] - rank
+                "progress": entry[3] - rank,
+                "activities": entry[4][0],
+
             }
         ranked_leaderboard.append(tmp)
         prev_score = entry[1]
