@@ -8,16 +8,18 @@ class User {
   int points;
   int? rank;
   int? progress;
-
-  User(this.login, this.house, this.points, this.rank, this.progress);
+  List<int>? activities;
+  User(this.login, this.house, this.points, this.rank, this.progress, this.activities);
 
   factory User.fromJson(Map<String, dynamic> json) {
+    final activities = json['activities'] != null ? List<int>.from(json['activities']) : null;
     return User(
       json['username'] as String,
       getNamefromString(json['house']),
       json['score'] as int,
       json['rank'] as int?,
       json['progress'] as int?,
+      activities
     );
   }
 }

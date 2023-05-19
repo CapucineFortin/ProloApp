@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../model/name.dart';
 import '../../model/user.dart';
+import 'badgeWidget.dart';
 
 String decodeUtf8(String bytesString) {
   List<int> bytes = bytesString.codeUnits;
@@ -49,7 +50,10 @@ Widget userScoreWidget(User user){
                     ),
                   ),
                 ]),
-            )
+            ),
+            Expanded(
+                flex: 3,
+                child: userBadgesWidget(user.activities ?? []))
           ]
       )
   );

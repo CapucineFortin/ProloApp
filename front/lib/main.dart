@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:proloapp/Home/view/home.dart';
+import 'package:proloapp/Meal/view/meal.dart';
 
 import 'Leaderboard/view/leaderboard.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +18,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(qrValue: ''),
+      home: const MyHomePage(qrValue: '', page: 1),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  //late Auth0? autho0;
-  MyHomePage({Key? key, required this.qrValue}) : super(key: key);
+  const MyHomePage({Key? key, required this.qrValue, required this.page}) : super(key: key);
 
   final String qrValue;
+  final int page;
 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
         home: DefaultTabController(
-            initialIndex: 1,
-            length: 2,
+            initialIndex: page,
+            length: 3,
             child: Scaffold(
                 bottomNavigationBar: const BottomAppBar(
                   child : TabBar(
@@ -41,6 +42,7 @@ class MyHomePage extends StatelessWidget {
                     tabs: [
                       Tab(icon: Icon(Icons.leaderboard)),
                       Tab(icon: Icon(Icons.home)),
+                      Tab(icon: Icon(Icons.local_dining))
                     ],
                   ),
                 ),
@@ -48,6 +50,7 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       LeaderboardWidget(),
                       HomeWidget(qrValue: qrValue),
+                      MealWidget(qrValue: qrValue)
                     ])
             )
         )

@@ -12,7 +12,7 @@ Widget getUserWidget(User user, int index, int previousIndex) {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         userRankWidget(user),
-        userScoreWidget(user)
+        userScoreWidget(user),
       ],
     ),
   );

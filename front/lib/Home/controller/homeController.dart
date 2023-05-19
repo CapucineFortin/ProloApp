@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 Future<User?> getContestant(String login) async {
-  final response = await http.get(Uri.parse('https://proloapp.herokuapp.com/finale/contestant/$login/'));
+  final response = await http.get(Uri.parse('http://88.126.10.70:34/finale/contestant/$login/'));
   if (response.statusCode == 200) {
     final jsonResponse = jsonDecode(response.body);
     return User.fromJson(jsonResponse);
@@ -15,15 +15,15 @@ Future<User?> getContestant(String login) async {
   }
 }
 
-Future<void> updateContestant(User contestant, int points) async {
-  contestant.points += points;
+Future<void> updateContestant(User contestant, int points, int pointType) async {
   final response = await http.post(
-    Uri.parse('https://proloapp.herokuapp.com/finale/setcontestant/${contestant.login}/'),
+    Uri.parse('http://88.126.10.70:34/finale/score/${contestant.login}/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, dynamic>{
-      'score': contestant.points,
+      'points': points,
+      'point_type': pointType + 1,
     }),
   );
   if (response.statusCode != 200) {

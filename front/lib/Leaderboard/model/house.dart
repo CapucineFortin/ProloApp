@@ -13,7 +13,7 @@ class House {
 
   factory House.fromJson(Map<String, dynamic> json) {
     Name name = getNamefromString(json['name']);
-    return House(name, json['score'], getColorFromHouse(name),[]);
+    return House(name, json['points'], getColorFromHouse(name),[]);
   }
 }
 

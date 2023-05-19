@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:proloapp/main.dart';
@@ -52,7 +51,7 @@ class _QRReaderState extends State<QRReader> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                          builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code! ),
+                          builder: (context) => MyHomePage(qrValue:  result == null || result!.code!.isEmpty ? "" : result!.code!, page: 1),
                         ));
                       },
                     child: const Text('Valider')

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../model/house.dart';
 
 Future<List<House>> getAllHouse() async {
-  final response = await http.get(Uri.parse('https://proloapp.herokuapp.com/finale/houses'));
+  final response = await http.get(Uri.parse('http://88.126.10.70:34/finale/houses/'));
   if (response.statusCode == 200) {
     return houseListFromJson(response.body);
   } else {
