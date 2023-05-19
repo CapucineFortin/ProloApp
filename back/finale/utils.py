@@ -59,14 +59,14 @@ def current_meal():
 
     delay = -2
     # Example usage:
-    BF_start = time(6 + delay, 0)  # 8:00 AM
-    BF_end = time(10 + delay, 30)  # 5:00 PM
+    BF_start = time(4 + delay, 0)  # 8:00 AM
+    BF_end = time(11 + delay, 30)  # 5:00 PM
     
-    LU_start = time(10 + delay, 30)  # 8:00 AM
-    LU_end = time(15 + delay, 0)  # 5:00 PM
+    LU_start = time(11 + delay, 30)  # 8:00 AM
+    LU_end = time(17 + delay, 0)  # 5:00 PM
     
-    DI_start = time(15 + delay, 0)  # 8:00 AM
-    DI_end = time(21 + delay, 0)  # 5:00 PM
+    DI_start = time(17 + delay, 0)  # 8:00 AM
+    DI_end = time(23 + delay, 0)  # 5:00 PM
 
     if is_current_time_in_range(BF_start, BF_end):
         return 1
